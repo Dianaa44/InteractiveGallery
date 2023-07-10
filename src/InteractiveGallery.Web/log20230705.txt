@@ -1,0 +1,103 @@
+2023-07-05 12:00:34.597 +03:00 [INF] Registered 5 endpoints in 1721 milliseconds.
+2023-07-05 12:00:36.085 +03:00 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-07-05 12:00:39.647 +03:00 [INF] Executed DbCommand (181ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+PRAGMA journal_mode = 'wal';
+2023-07-05 12:00:39.846 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Contributors" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Contributors" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL
+);
+2023-07-05 12:00:39.846 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Projects" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Projects" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "Priority" INTEGER NOT NULL
+);
+2023-07-05 12:00:39.848 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "ToDoItems" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_ToDoItems" PRIMARY KEY AUTOINCREMENT,
+    "Title" TEXT NOT NULL,
+    "Description" TEXT NOT NULL,
+    "ContributorId" INTEGER NULL,
+    "IsDone" INTEGER NOT NULL,
+    "ProjectId" INTEGER NULL,
+    CONSTRAINT "FK_ToDoItems_Projects_ProjectId" FOREIGN KEY ("ProjectId") REFERENCES "Projects" ("Id")
+);
+2023-07-05 12:00:39.849 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_ToDoItems_ProjectId" ON "ToDoItems" ("ProjectId");
+2023-07-05 12:00:40.561 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2023-07-05 12:00:40.795 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+2023-07-05 12:00:40.805 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."ContributorId", "t"."Description", "t"."IsDone", "t"."ProjectId", "t"."Title"
+FROM "ToDoItems" AS "t"
+2023-07-05 12:00:40.812 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name"
+FROM "Contributors" AS "c"
+2023-07-05 12:00:41.137 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (Size = 7)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Name")
+VALUES (@p0)
+RETURNING "Id";
+2023-07-05 12:00:41.157 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 8)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Name")
+VALUES (@p0)
+RETURNING "Id";
+2023-07-05 12:00:41.316 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 12), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Projects" ("Name", "Priority")
+VALUES (@p0, @p1)
+RETURNING "Id";
+2023-07-05 12:00:41.328 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p2='?' (DbType = Int32), @p3='?' (Size = 31), @p4='?' (DbType = Boolean), @p5='?' (DbType = Int32), @p6='?' (Size = 18)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("ContributorId", "Description", "IsDone", "ProjectId", "Title")
+VALUES (@p2, @p3, @p4, @p5, @p6)
+RETURNING "Id";
+2023-07-05 12:00:41.330 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 81), @p2='?' (DbType = Boolean), @p3='?' (DbType = Int32), @p4='?' (Size = 15)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("ContributorId", "Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2023-07-05 12:00:41.333 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 59), @p2='?' (DbType = Boolean), @p3='?' (DbType = Int32), @p4='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("ContributorId", "Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2023-07-05 12:00:42.993 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-07-05 12:00:42.994 +03:00 [INF] Hosting environment: Development
+2023-07-05 12:00:42.994 +03:00 [INF] Content root path: D:\4thYearProject\InteractiveGallery\src\InteractiveGallery.Web
+2023-07-05 12:00:43.212 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2023-07-05 12:00:43.928 +03:00 [WRN] Failed to determine the https port for redirect.
+2023-07-05 12:00:44.099 +03:00 [INF] Executing endpoint 'InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web)'
+2023-07-05 12:00:44.140 +03:00 [INF] Route matched with {action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller InteractiveGallery.Web.Controllers.HomeController (InteractiveGallery.Web).
+2023-07-05 12:00:44.858 +03:00 [INF] Executing action method InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web) - Validation state: "Valid"
+2023-07-05 12:00:44.869 +03:00 [INF] Executed action method InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 1.7651ms.
+2023-07-05 12:00:44.887 +03:00 [INF] Executing ViewResult, running view Index.
+2023-07-05 12:00:46.756 +03:00 [INF] Executed ViewResult - view Index executed in 1874.5826ms.
+2023-07-05 12:00:46.768 +03:00 [INF] Executed action InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web) in 2627.6209ms
+2023-07-05 12:00:46.770 +03:00 [INF] Executed endpoint 'InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web)'
+2023-07-05 12:00:46.920 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 3709.7273ms
+2023-07-05 12:00:46.933 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/InteractiveGallery.Web.styles.css?v=GedvU_5V0yKoSarkLIBMP0AR32OZ670Iv-WKgLa6ZsA - -
+2023-07-05 12:00:46.935 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-07-05 12:00:46.940 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - -
+2023-07-05 12:00:46.954 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12014 application/javascript;+charset=utf-8 17.6406ms
+2023-07-05 12:00:46.954 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - -
+2023-07-05 12:00:46.955 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - -
+2023-07-05 12:00:46.992 +03:00 [INF] Sending file. Request path: '/InteractiveGallery.Web.styles.css'. Physical path: 'D:\4thYearProject\InteractiveGallery\src\InteractiveGallery.Web\obj\Debug\net7.0\scopedcss\bundle\InteractiveGallery.Web.styles.css'
+2023-07-05 12:00:46.997 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/InteractiveGallery.Web.styles.css?v=GedvU_5V0yKoSarkLIBMP0AR32OZ670Iv-WKgLa6ZsA - - - 200 1139 text/css 63.7289ms
+2023-07-05 12:00:47.001 +03:00 [INF] Sending file. Request path: '/css/site.css'. Physical path: 'D:\4thYearProject\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\css\site.css'
+2023-07-05 12:00:47.002 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - - 200 194 text/css 61.7759ms
+2023-07-05 12:00:47.002 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2023-07-05 12:00:47.037 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2023-07-05 12:00:47.040 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-07-05 12:00:47.056 +03:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'D:\4thYearProject\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\js\site.js'
+2023-07-05 12:00:47.056 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 200 230 text/javascript 19.7409ms
+2023-07-05 12:00:47.065 +03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'D:\4thYearProject\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+2023-07-05 12:00:47.073 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - - - 200 162726 text/css 131.6889ms
+2023-07-05 12:00:47.315 +03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'D:\4thYearProject\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+2023-07-05 12:00:47.322 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 200 78474 text/javascript 320.0589ms
+2023-07-05 12:00:47.336 +03:00 [INF] Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'D:\4thYearProject\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\lib\jquery\dist\jquery.min.js'
+2023-07-05 12:00:47.341 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - - - 200 89478 text/javascript 386.7256ms
+2023-07-05 12:00:47.350 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 310.2116ms
+2023-07-05 12:00:47.452 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/favicon.ico - -
+2023-07-05 12:00:47.469 +03:00 [INF] Sending file. Request path: '/favicon.ico'. Physical path: 'D:\4thYearProject\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\favicon.ico'
+2023-07-05 12:00:47.470 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/favicon.ico - - - 200 5430 image/x-icon 18.0390ms
