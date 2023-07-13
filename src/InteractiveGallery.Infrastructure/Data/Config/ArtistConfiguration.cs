@@ -12,6 +12,11 @@ public class ArtistConfiguration : IEntityTypeConfiguration<Artist>
 {
   public void Configure(EntityTypeBuilder<Artist> builder)
   {
+
+    builder.Property(e => e.Id)
+                        .HasColumnName("id")
+                        .ValueGeneratedOnAdd(); 
+
     builder.Property(a => a.Name)
         .HasMaxLength(100)
         .IsRequired().HasColumnName("name");

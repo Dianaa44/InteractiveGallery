@@ -2,10 +2,9 @@
 
 #nullable disable
 
-namespace InteractiveGallery.Infrastructure.Migrations
-{
+namespace InteractiveGallery.Infrastructure.Migrations;
     /// <inheritdoc />
-    public partial class IntGal1 : Migration
+    public partial class SecondMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,14 +13,14 @@ namespace InteractiveGallery.Infrastructure.Migrations
                 name: "Artists",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     biography = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Artists", x => x.Id);
+                    table.PrimaryKey("PK_Artists", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,7 +54,7 @@ namespace InteractiveGallery.Infrastructure.Migrations
                         name: "FK_Gallery_Artist",
                         column: x => x.InitiatorId,
                         principalTable: "Artists",
-                        principalColumn: "Id");
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
@@ -66,12 +65,12 @@ namespace InteractiveGallery.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     price = table.Column<double>(type: "float", nullable: false),
+                    status = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     ArtistId = table.Column<int>(type: "int", nullable: false),
                     GalleryId = table.Column<int>(type: "int", nullable: false),
                     image = table.Column<string>(type: "text", nullable: false),
-                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -80,7 +79,7 @@ namespace InteractiveGallery.Infrastructure.Migrations
                         name: "FK_Artwork_Artist",
                         column: x => x.ArtistId,
                         principalTable: "Artists",
-                        principalColumn: "Id");
+                        principalColumn: "id");
                     table.ForeignKey(
                         name: "FK_Artwork_Category",
                         column: x => x.CategoryId,
@@ -109,7 +108,7 @@ namespace InteractiveGallery.Infrastructure.Migrations
                         name: "FK_GalleryArtist_Artist",
                         column: x => x.ArtistId,
                         principalTable: "Artists",
-                        principalColumn: "Id");
+                        principalColumn: "id");
                     table.ForeignKey(
                         name: "FK_GalleryArtist_Gallery",
                         column: x => x.GalleryId,
@@ -167,4 +166,4 @@ namespace InteractiveGallery.Infrastructure.Migrations
                 name: "Artists");
         }
     }
-}
+

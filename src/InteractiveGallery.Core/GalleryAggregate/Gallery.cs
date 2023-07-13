@@ -17,8 +17,7 @@ public class Gallery : AggregateRoot
   public virtual ICollection<Artwork> Artworks { get; private set; }
   public virtual Artist InitiatorArtist { get; private set; }
 
-  public Gallery(int id)
-  : base(id)
+  public Gallery()
   {
   
   }

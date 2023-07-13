@@ -8,11 +8,11 @@
 //namespace InteractiveGallery.Web.Controllers;
 
 //[Route("[controller]")]
-//public class ArtistController: Controller
+//public class ArtistController1: Controller
 //{
 //  private readonly IRepository<Artist> _artistRepository;
 
-//  public ArtistController(IRepository<Artist> artistRepository)
+//  public ArtistController1(IRepository<Artist> artistRepository)
 //  {
 //    _artistRepository = artistRepository;
 //  }
@@ -71,7 +71,7 @@
 //  {
 //    if (ModelState.IsValid)
 //    {
-//      var artist = new Artist( artistViewModel.Name,artistViewModel.Biography);   //زبطي شغلة ال ID
+//      var artist = new Artist(1, artistViewModel.Name);   //زبطي شغلة ال ID
 //    await _artistRepository.AddAsync(artist);
 //      await _artistRepository.SaveChangesAsync();   ///unit of work?
 //      return RedirectToAction(nameof(Index));

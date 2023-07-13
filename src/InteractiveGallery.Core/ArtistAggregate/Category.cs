@@ -15,8 +15,7 @@ public class Category : EntityBase
   public string Description { get; set; }
   public virtual List<Artwork> Artworks { get; private set; }
 
-  public Category(int id,string name)
-  : base(id)
+  public Category(string name)
   {
     Name = Guard.Against.NullOrEmpty(name, nameof(name));
     Artworks = new List<Artwork>();

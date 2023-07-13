@@ -14,8 +14,7 @@ public class GalleryArtist : EntityBase
   public int GalleryId { get; set; }
   public virtual Artist Artist { get; set; }                  
   public virtual Gallery Gallery { get; set; }      
-  public GalleryArtist(int id)
-  : base(id)
+  public GalleryArtist()
   {
    
   }
