@@ -29,29 +29,35 @@ public class ArtistsController : Controller
   //      }
 
   // GET: Artists
-  public IActionResult Index()
+  [HttpGet]
+  public async Task<IActionResult> Index()
   {
-
-    return View();
+    var artists = await _artistRepository.ListAsync();
+    return View(artists.ToArray());
   }
 
   // GET: Artists/Details/5
-  public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Artists == null)
-            {
-                return NotFound();
-            }
+  //  [HttpGet]
+  //[HttpGet("{id:int}")]
+  //[Route("details")]     
+  [HttpGet("details/{id:int}")]
+  public async Task<IActionResult> Details(int id)
+  {
+    var spec = new ArtistByIdSpec(id);
+    var artist = await _artistRepository.FirstOrDefaultAsync(spec);
+    if (artist == null)
+    {
+      return NotFound();
+    }
 
-            var artist = await _context.Artists
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (artist == null)
-            {
-                return NotFound();
-            }
-
-            return View(artist);
-        }
+    var artistVO = new ArtistValueObject
+    {
+      Id = artist.Id,
+      Name = artist.Name,
+      Biography = artist.Biography
+    };
+    return View(artistVO);
+  }
 
   // GET: Artists/Create
   [HttpGet("create")]
@@ -60,22 +66,7 @@ public class ArtistsController : Controller
             return View();
         }
 
-  // POST: Artists/Create
-  // To protect from overposting attacks, enable the specific properties you want to bind to.
-  // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-  //[HttpPost]
-  //[ValidateAntiForgeryToken]
-  //public async Task<IActionResult> Create([Bind("Name,Biography,Id")] Artist artist)
-  //{
-  //    if (ModelState.IsValid)
-  //    {
-  //        var artists = await _artistRepository.AddAsync(artist);  
-  //        //_context.Add(artist);
-  //        await _artistRepository.SaveChangesAsync();
-  //        return RedirectToAction(nameof(Index));
-  //    }
-  //    return View(artist);
-  //}
+  
   [HttpPost("create")]
   [HttpPost]
   [ValidateAntiForgeryToken]
@@ -92,96 +83,94 @@ public class ArtistsController : Controller
   }
 
   // GET: Artists/Edit/5
-  public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Artists == null)
-            {
-                return NotFound();
-            }
+  [HttpGet("edit/{id:int}")]
+  public async Task<IActionResult> Edit(int id)
+  {
+      var spec = new ArtistByIdSpec(id);
+      var artist = await _artistRepository.FirstOrDefaultAsync(spec);
+              if (artist == null)
+              {
+                  return NotFound();
+              }
+      var artistVO = new ArtistValueObject
+      {
+        Id = artist.Id,
+        Name = artist.Name,
+        Biography = artist.Biography
+      };
+      return View(artistVO);
+          }
 
-            var artist = await _context.Artists.FindAsync(id);
-            if (artist == null)
-            {
-                return NotFound();
-            }
-            return View(artist);
-        }
-
-        // POST: Artists/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Biography,Id")] Artist artist)
+  // POST: Artists/Edit/5
+  // To protect from overposting attacks, enable the specific properties you want to bind to.
+  // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+  [HttpPost("edit/{id:int}")]
+  [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Name,Biography,Id")] ArtistValueObject artistValueObject)
         {
-            if (id != artist.Id)
+            if (id != artistValueObject.Id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(artist);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ArtistExists(artist.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                 var spec = new ArtistByIdSpec(id);
+                 var artist= await _artistRepository.FirstOrDefaultAsync(spec);
+      if(artist == null) { return NotFound(); }
+                 artist.updateArtist(artistValueObject);
+                 await _artistRepository.UpdateAsync(artist);
+                 await _artistRepository.SaveChangesAsync();
+               
                 return RedirectToAction(nameof(Index));
             }
-            return View(artist);
+            return View(artistValueObject);
         }
 
-        // GET: Artists/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+  // GET: Artists/Delete/5
+  [HttpGet("delete/{id:int}")]
+  public async Task<IActionResult> Delete(int id)
         {
-            if (id == null || _context.Artists == null)
-            {
-                return NotFound();
-            }
 
-            var artist = await _context.Artists
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (artist == null)
-            {
-                return NotFound();
-            }
+    var spec = new ArtistByIdSpec(id);
+    var artist = await _artistRepository.FirstOrDefaultAsync(spec);
+    if (artist == null)
+    {
+      return NotFound();
+    }
+    await _artistRepository.DeleteAsync(artist);
 
-            return View(artist);
-        }
+    var artistVO = new ArtistValueObject
+    {
+      Id = artist.Id,
+      Name = artist.Name,
+      Biography = artist.Biography
+    };
+    return View(artistVO);
+  }
 
-        // POST: Artists/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+  // POST: Artists/Delete/5
+  [HttpPost("delete/{id:int}")]
+  //[HttpPost, ActionName("Delete")]
+ [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Artists == null)
-            {
-                return Problem("Entity set 'AppDbContext.Artists'  is null.");
-            }
-            var artist = await _context.Artists.FindAsync(id);
+    //if (_context.Artists == null)
+    //{
+    //    return Problem("Entity set 'AppDbContext.Artists'  is null.");
+    //}
+    var spec = new ArtistByIdSpec(id);
+
+    var artist = await _artistRepository.FirstOrDefaultAsync(spec);
             if (artist != null)
             {
-                _context.Artists.Remove(artist);
+               await _artistRepository.DeleteAsync(artist);
             }
             
-            await _context.SaveChangesAsync();
+            await _artistRepository.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ArtistExists(int id)
-        {
-          return (_context.Artists?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
+        
     }
 

@@ -8,6 +8,7 @@ using InteractiveGallery.Core.GalleryAggregate;
 namespace InteractiveGallery.Core.ArtistAggregate;
 public class ArtistValueObject
 {
+  public int Id { get;  set; }
   public string Name { get; set; }
   public string Biography { get; set; }
   public virtual List<Gallery> Galleries { get;  set; }

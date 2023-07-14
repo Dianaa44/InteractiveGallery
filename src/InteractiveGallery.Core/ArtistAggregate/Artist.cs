@@ -44,5 +44,10 @@ public class Artist : EntityBase , IAggregateRoot
   {
     if (string.IsNullOrEmpty(name)) Name = name;
   }
+  public void updateArtist(ArtistValueObject artistValueObject)
+  {
+    Name = artistValueObject.Name;
+    Biography = artistValueObject.Biography;
+  }
 }
 
