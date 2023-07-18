@@ -16,8 +16,8 @@ public class Artwork : EntityBase
  public String Name { get; private set; }
  public double Price { get; private set; } 
 
- public ArtworkStatus  Status ;
- public int CategoryId { get; private set; }
+ public string  Status { get; private set; }
+  public int CategoryId { get; private set; }
  public int ArtistId { get; private set; }
   public int GalleryId { get; private set; }
   public string Image { get; private set; }
@@ -34,11 +34,11 @@ public class Artwork : EntityBase
   //we should get the string path from the IFormFile here
   /////
 
-  public Artwork(int id, string name, string image)
-    : base(id)
+  public Artwork( string name, string image,string status)
+
   {
     Name = Guard.Against.NullOrEmpty(name, nameof(name));
-    Status = ArtworkStatus.Available;
+    Status = Status;
     Image = image;
     // ArtistId = artistId;
 

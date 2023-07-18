@@ -1,10 +1,9 @@
 ﻿
 namespace InteractiveGallery.SharedKernel;
-public abstract class AggregateRoot:EntityBase
+public abstract class AggregateRoot: EntityBase
 {
   private readonly List<DomainEventBase> _domainEventBases = new();
-  protected AggregateRoot(int id)
-    :base(id) 
+  public AggregateRoot()
   {
   }
   protected void RaiseDomainEvent(DomainEventBase domainEvent)

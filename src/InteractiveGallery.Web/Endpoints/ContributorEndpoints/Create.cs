@@ -28,7 +28,7 @@ public class Create : Endpoint<CreateContributorRequest, CreateContributorRespon
       ThrowError("Name is required");
     }
 
-    var newContributor = new Artist(1,request.Name);
+    var newContributor = new Artist(request.Name,"");
     var createdItem = await _repository.AddAsync(newContributor, cancellationToken);
     var response = new CreateContributorResponse
     (
