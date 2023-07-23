@@ -8,13 +8,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InteractiveGallery.Infrastructure.Data;
 
-public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
+public class AppDbContextFactory : IDesignTimeDbContextFactory<InteractiveGalleryDbContext>
 {
-  public AppDbContext CreateDbContext(string[] args)
+  public InteractiveGalleryDbContext CreateDbContext(string[] args)
   {
-    var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-    optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=interactiveGallery;Trusted_Connection=True;MultipleActiveResultSets=true");
+    var optionsBuilder = new DbContextOptionsBuilder<InteractiveGalleryDbContext>();
+    optionsBuilder.UseSqlServer("Server=DESKTOP-9KU8EQC;Database=interactiveGallery; User Id = sa; Password=Diana2022;Trusted_Connection=True;TrustServerCertificate=True;");
+   // optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=interactiveGallery;Trusted_Connection=True;MultipleActiveResultSets=true");
 
-    return new AppDbContext(optionsBuilder.Options);
+    return new InteractiveGalleryDbContext(optionsBuilder.Options);
   }
 }

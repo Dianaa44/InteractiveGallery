@@ -1,4 +1,5 @@
-﻿using Ardalis.ListStartupServices;
+﻿using System;
+using Ardalis.ListStartupServices;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using FastEndpoints;
@@ -8,8 +9,12 @@ using InteractiveGallery.Core;
 using InteractiveGallery.Infrastructure;
 using InteractiveGallery.Infrastructure.Data;
 using InteractiveGallery.Web;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.Metrics;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +30,17 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 
 string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
+
+
 builder.Services.AddDbContext(connectionString!);
+
+
+//builder.Services.AddIdentity<IdentityUser, IdentityRole>(options=>options.SignIn.RequireConfirmedAccount=false).AddRoles<IdentityRole>().AddEntityFrameworkStores<InteractiveGalleryDbContext>().AddDefaultUI();
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false).AddRoles<IdentityRole>().AddEntityFrameworkStores<InteractiveGalleryDbContext>().AddDefaultUI();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+           .AddDefaultUI().AddSignInManager<SignInManager<ApplicationUser>>()
+           .AddEntityFrameworkStores<InteractiveGalleryDbContext>()
+                           .AddDefaultTokenProviders();
 
 builder.Services.AddControllersWithViews().AddNewtonsoftJson();
 builder.Services.AddRazorPages();
@@ -57,7 +72,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 //builder.Logging.AddAzureWebAppDiagnostics(); add this if deploying to Azure
 
 var app = builder.Build();
-
+app.UseAuthentication();
 if (app.Environment.IsDevelopment())
 {
   app.UseDeveloperExceptionPage();
@@ -91,10 +106,10 @@ using (var scope = app.Services.CreateScope())
 
   try
   {
-    var context = services.GetRequiredService<AppDbContext>();
+    var context = services.GetRequiredService<InteractiveGalleryDbContext>();
     //                    context.Database.Migrate();
     context.Database.EnsureCreated();
-    //SeedData.Initialize(services);
+      await SeedData.Initialize(services);
   }
   catch (Exception ex)
   {

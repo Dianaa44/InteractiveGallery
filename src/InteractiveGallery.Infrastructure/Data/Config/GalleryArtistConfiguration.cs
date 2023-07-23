@@ -30,6 +30,9 @@ public class GalleryArtistConfiguration : IEntityTypeConfiguration<GalleryArtist
                        .HasForeignKey(d => d.GalleryId)
                        .OnDelete(DeleteBehavior.ClientSetNull)
                        .HasConstraintName("FK_GalleryArtist_Gallery");
+    builder.Property(a => a.Status)
+                .HasConversion<string>()
+                .IsRequired().HasColumnName("status");
 
   }
 }

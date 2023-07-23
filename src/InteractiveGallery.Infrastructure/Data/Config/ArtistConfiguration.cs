@@ -22,5 +22,12 @@ public class ArtistConfiguration : IEntityTypeConfiguration<Artist>
         .IsRequired().HasColumnName("name");
 
     builder.Property(a => a.Biography).HasColumnName("biography");
+
+    builder.Property(e => e.IdentityGuid)
+                           .HasColumnName("IdentityGuid")
+                           .ValueGeneratedOnAdd();
+
+
+
   }
 }

@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using InteractiveGallery.Core.ArtistAggregate;
 using InteractiveGallery.SharedKernel;
+using InteractiveGallery.SharedKernel.Interfaces;
 
 namespace InteractiveGallery.Core.GalleryAggregate;
-public class Gallery : AggregateRoot
+public class Gallery : EntityBase, IAggregateRoot
 {
   public string Name { get; private set; }
   public string Theme { get; private set; }
@@ -20,5 +21,20 @@ public class Gallery : AggregateRoot
   public Gallery()
   {
   
+  }
+  public Gallery(GalleryValueObject galleryValueObject) {
+  Name = galleryValueObject.Name;
+  Theme = galleryValueObject.Theme;
+  InitiatorId = galleryValueObject.InitiatorId;
+  InitiatorArtist = galleryValueObject.InitiatorArtist;
+
+  }
+
+  public void updateGallery(GalleryValueObject galleryValueObject)
+  {
+    Name = galleryValueObject.Name;
+    Theme = galleryValueObject.Theme;
+    InitiatorId = galleryValueObject.InitiatorId;
+    InitiatorArtist = galleryValueObject.InitiatorArtist;
   }
 }

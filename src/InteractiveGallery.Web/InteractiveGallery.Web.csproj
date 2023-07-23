@@ -18,6 +18,8 @@
     <PackageReference Include="FastEndpoints.ApiExplorer" />
     <PackageReference Include="FastEndpoints.Swagger.Swashbuckle" />
     <PackageReference Include="MediatR" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" PrivateAssets="all" />
@@ -33,6 +35,8 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Folder Include="wwwroot\Images\" />
+    <Folder Include="wwwroot\ArtworkImages\" />
     <Folder Include="wwwroot\plugins\jqvmap\js\maps\" />
     <Folder Include="wwwroot\plugins\summernote\css\" />
   </ItemGroup>

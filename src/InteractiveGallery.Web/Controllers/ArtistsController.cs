@@ -9,26 +9,24 @@ using InteractiveGallery.Core.ArtistAggregate;
 using InteractiveGallery.Infrastructure.Data;
 using InteractiveGallery.SharedKernel.Interfaces;
 using InteractiveGallery.Core.ArtistAggregate.Specifications;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace InteractiveGallery.Web.Controllers;
+
 [Route("[controller]")]
 public class ArtistsController : Controller
     {
   private readonly IRepository<Artist> _artistRepository;
+  private readonly UserManager<ApplicationUser> _userManager;
+  
 
-  public ArtistsController(IRepository<Artist> artistRepository, AppDbContext context)
+  public ArtistsController(IRepository<Artist> artistRepository,UserManager<ApplicationUser> userManager)
   {
     _artistRepository = artistRepository;
-    _context = context;
+    _userManager = userManager;
   }
 
-  private readonly AppDbContext _context;
-  //      public ArtistsController(AppDbContext context)
-  //      {
-  //          _context = context;
-  //      }
-
-  // GET: Artists
   [HttpGet]
   public async Task<IActionResult> Index()
   {
@@ -36,10 +34,7 @@ public class ArtistsController : Controller
     return View(artists.ToArray());
   }
 
-  // GET: Artists/Details/5
-  //  [HttpGet]
-  //[HttpGet("{id:int}")]
-  //[Route("details")]     
+  // GET: Artists/Details/5     
   [HttpGet("details/{id:int}")]
   public async Task<IActionResult> Details(int id)
   {
@@ -68,15 +63,15 @@ public class ArtistsController : Controller
 
   
   [HttpPost("create")]
-  [HttpPost]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> Create(ArtistValueObject artistValueObject)
   {
     var artist = new Artist(artistValueObject);
     if (ModelState.IsValid)
-    {   
+    { 
+      artist.IdentityGuid=_userManager.GetUserId(HttpContext.User);
       await _artistRepository.AddAsync(artist);
-      await _artistRepository.SaveChangesAsync();   ///unit of work?
+      await _artistRepository.SaveChangesAsync();   
       return RedirectToAction(nameof(Index));
     }
     return View(artist);
@@ -86,6 +81,7 @@ public class ArtistsController : Controller
   [HttpGet("edit/{id:int}")]
   public async Task<IActionResult> Edit(int id)
   {
+
       var spec = new ArtistByIdSpec(id);
       var artist = await _artistRepository.FirstOrDefaultAsync(spec);
               if (artist == null)
@@ -155,10 +151,7 @@ public class ArtistsController : Controller
  [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-    //if (_context.Artists == null)
-    //{
-    //    return Problem("Entity set 'AppDbContext.Artists'  is null.");
-    //}
+    
     var spec = new ArtistByIdSpec(id);
 
     var artist = await _artistRepository.FirstOrDefaultAsync(spec);

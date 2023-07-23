@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using InteractiveGallery.SharedKernel;
 using Ardalis.GuardClauses;
 using InteractiveGallery.Core.GalleryAggregate;
+using InteractiveGallery.Core.CategoryAggregate;
 
 namespace InteractiveGallery.Core.ArtistAggregate;
 public class Artwork : EntityBase
@@ -16,7 +17,7 @@ public class Artwork : EntityBase
  public String Name { get; private set; }
  public double Price { get; private set; } 
 
- public string  Status { get; private set; }
+  public ArtworkStatus  Status { get; private set; }
   public int CategoryId { get; private set; }
  public int ArtistId { get; private set; }
   public int GalleryId { get; private set; }
@@ -34,17 +35,30 @@ public class Artwork : EntityBase
   //we should get the string path from the IFormFile here
   /////
 
-  public Artwork( string name, string image,string status)
+  public Artwork( string name, string image)
 
   {
     Name = Guard.Against.NullOrEmpty(name, nameof(name));
-    Status = Status;
     Image = image;
     // ArtistId = artistId;
 
     //GalleryId = galleryId;
 
     //  CategoryId = categoryId;
+  }
+  public Artwork(ArtworkValueObject artworkValueObject)
+  {
+    this.Status = artworkValueObject.Status;
+    this.Name=artworkValueObject.Name;
+    this.Description=artworkValueObject.Description;
+    this.Image = artworkValueObject.Image;
+    this.Price = artworkValueObject.Price;
+    this.CategoryId = artworkValueObject.CategoryId;
+    this.ArtistId = artworkValueObject.ArtistId;
+    this.GalleryId= artworkValueObject.GalleryId;
+    this.Artist= artworkValueObject.Artist;
+    this.Gallery= artworkValueObject.Gallery;
+    this.Category= artworkValueObject.Category;
   }
 
 
