@@ -42,6 +42,9 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
            .AddEntityFrameworkStores<InteractiveGalleryDbContext>()
                            .AddDefaultTokenProviders();
 
+builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
+
+
 builder.Services.AddControllersWithViews().AddNewtonsoftJson();
 builder.Services.AddRazorPages();
 builder.Services.AddFastEndpoints();
@@ -84,6 +87,8 @@ else
   app.UseHsts();
 }
 app.UseRouting();
+app.UseAuthorization();
+app.UseAuthentication();
 app.UseFastEndpoints();
 
 app.UseHttpsRedirection();
@@ -96,7 +101,32 @@ app.UseSwagger();
 // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"));
 
-app.MapDefaultControllerRoute();
+
+
+    // Custom route for AdminArea
+app.MapAreaControllerRoute(
+        name: "admin_area",
+        areaName: "AdminArea",
+        pattern: "AdminArea/{controller=Home}/{action=Index}/{id?}"
+    );
+
+
+// Custom route for UserArea
+app.MapAreaControllerRoute(
+        name: "user_area",
+        areaName: "UserArea",
+        pattern: "UserArea/{controller=Home}/{action=Index}/{id?}"
+ );
+
+app.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}"
+    );
+
+
+
+
+//app.MapDefaultControllerRoute();
 app.MapRazorPages();
 
 // Seed Database

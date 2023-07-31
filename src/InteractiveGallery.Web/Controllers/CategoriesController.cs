@@ -11,9 +11,11 @@ using InteractiveGallery.SharedKernel.Interfaces;
 using InteractiveGallery.Core.CategoryAggregate;
 using InteractiveGallery.Core.CategoryAggregate.Specifications;
 using InteractiveGallery.Core.ArtistAggregate.Specifications;
+using Microsoft.AspNetCore.Authorization;
 
 namespace InteractiveGallery.Web.Controllers;
-[Route("[controller]")]
+[Route("[controller]/{Admin}")]
+[Authorize(Roles = "Admin")]
 public class CategoriesController : Controller
     {
   private readonly IRepository<Category> _categoryRepository;
@@ -123,7 +125,6 @@ public class CategoriesController : Controller
   [HttpGet("delete/{id:int}")]
   public async Task<IActionResult> Delete(int id)
   {
-
     var spec = new CategoryByIdSpec(id);
     var category = await _categoryRepository.FirstOrDefaultAsync(spec);
     if (category == null)

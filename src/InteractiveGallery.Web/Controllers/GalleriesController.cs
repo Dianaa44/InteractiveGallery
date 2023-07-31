@@ -54,7 +54,6 @@ public class GalleriesController : Controller
       Id = gallery.Id,
       Name = gallery.Name,
       Theme = gallery.Theme,
-      InitiatorId = gallery.InitiatorId
     };
     return View(galleryVO);
   }
@@ -78,17 +77,12 @@ public class GalleriesController : Controller
     var initiatorspec = new ArtistByIdentityGuidSpec(artistIdentityGuid);
     var initiatorUser = await _artistRepository.FirstOrDefaultAsync(initiatorspec);
     if (initiatorUser == null) { return NotFound(); } 
-   // galleryValueObject.InitiatorId = initiatorUser.Id;
-    var spec = new ArtistByIdSpec(galleryValueObject.InitiatorId);
-    var artist = await _artistRepository.FirstOrDefaultAsync(spec);
-    if (artist == null) { return NotFound(); }
-    galleryValueObject.InitiatorArtist = artist;
-    galleryValueObject.InitiatorId = artist.Id;
+    //galleryValueObject.InitiatorArtist = initiatorUser;
     var gallery = new Gallery(galleryValueObject);
     if (ModelState.IsValid)
-    { 
-      artist.addGallery(gallery);
-      await _artistRepository.UpdateAsync(artist);
+    {
+      initiatorUser.addGallery(gallery);
+      await _artistRepository.UpdateAsync(initiatorUser);
       await _artistRepository.SaveChangesAsync();
       await _galleryRepository.AddAsync(gallery);
       await _galleryRepository.SaveChangesAsync();
@@ -113,7 +107,6 @@ public class GalleriesController : Controller
       Id = gallery.Id,
       Name = gallery.Name,
       Theme = gallery.Theme,
-      InitiatorId = gallery.InitiatorId
     };
     return View(galleryVO);
   }
@@ -164,7 +157,6 @@ public class GalleriesController : Controller
       Id = gallery.Id,
       Name = gallery.Name,
       Theme = gallery.Theme,
-      InitiatorId = gallery.InitiatorId
     };
     return View(galleryVO);
   }

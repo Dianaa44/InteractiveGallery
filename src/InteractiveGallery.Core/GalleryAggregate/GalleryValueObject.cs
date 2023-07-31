@@ -13,6 +13,6 @@ public class GalleryValueObject
   public string Theme { get;  set; }
   public int InitiatorId { get;  set; }
   //public virtual ICollection<GalleryArtist> Artists { get; private set; }
-  //public virtual ICollection<Artwork> Artworks { get; private set; }
+  public  ICollection<Artwork> Artworks { get;  set; }
   public  Artist InitiatorArtist { get;  set; }
 }

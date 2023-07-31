@@ -1,0 +1,35 @@
+﻿@model IEnumerable<InteractiveGallery.Core.CategoryAggregate.Category>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/AdminArea/Views/Shared/MyLayout.cshtml";
+}
+
+<h1>Categories</h1>
+
+<p>
+	<a asp-action="Create">Create</a>
+</p>
+<br>
+<br>
+<div class="row">
+	@foreach (var item in Model)
+	{
+
+		<div class="col-md-6 col-lg-3">
+			<div class="card">
+				<img class="img-fluid" src="../images/big/img1.jpg" alt="">
+				<div class="card-body">
+					<p class="card-title">Category name: @Html.DisplayFor(modelItem => item.Name)</p>
+					<p class="card-text">Description: @Html.DisplayFor(modelItem => item.Description)</p>
+					<div>
+						<a asp-action="Edit" asp-route-id="@item.Id"><button asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn mb-1 btn-flat btn-outline-primary">Edit</button></a>
+						<a asp-action="Delete" asp-route-id="@item.Id"><button asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn mb-1 btn-flat btn-outline-danger">Delete</button></a>
+						<button asp-action="Details" type="button" asp-route-id="@item.Id" class="btn mb-1 btn-flat btn-outline-warning">Details</button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+</div>

@@ -26,7 +26,6 @@ public class Gallery : EntityBase, IAggregateRoot
   Name = galleryValueObject.Name;
   Theme = galleryValueObject.Theme;
   InitiatorId = galleryValueObject.InitiatorId;
-  InitiatorArtist = galleryValueObject.InitiatorArtist;
 
   }
 

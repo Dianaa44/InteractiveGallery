@@ -1,0 +1,27 @@
+﻿@model InteractiveGallery.Core.CategoryAggregate.CategoryValueObject
+
+@{
+	ViewData["Title"] = "Details";
+	Layout = "~/Views/UserViews/Shared/MyLayout.cshtml";
+}
+
+
+<h1>Details</h1>
+
+<div>
+	<h4>Category</h4>
+	<div class="col-md-6 col-lg-12">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">@Html.DisplayFor(model => model.Name)</h5>
+				<p class="card-text">Artist @Html.DisplayFor(model => model.Name)</p>
+				<p class="card-text">Theme @Html.DisplayFor(model => model.Description)</p>
+				<pr>
+					<button asp-action="Edit" asp-route-id="@Model?.Id" type="button" class="btn mb-1 btn-flat btn-outline-primary">Edit</button>
+					<button asp-action="Delete" asp-route-id="@Model?.Id" type="button" class="btn mb-1 btn-flat btn-outline-danger">Delete</button>
+					<a asp-action="Index">Back to List</a>
+			</div>
+		</div>
+	</div>
+</div>
+

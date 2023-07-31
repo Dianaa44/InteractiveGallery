@@ -29,7 +29,7 @@ public class Category : EntityBase,IAggregateRoot
   }
   public void updateCategory(CategoryValueObject categoryValueObject)
   {
-    Name = categoryValueObject.Name;
-    Description = categoryValueObject.Description;
+    this.Name = categoryValueObject.Name;
+    this.Description = categoryValueObject.Description;
   }
 }

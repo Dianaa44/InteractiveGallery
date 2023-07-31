@@ -13,7 +13,7 @@ public class GalleryByIdSpec : Specification<Gallery>, ISingleResultSpecificatio
   public GalleryByIdSpec(int galleryId)
   {
     Query
-        .Where(gallery => gallery.Id == galleryId);
+        .Where(gallery => gallery.Id == galleryId).Include(gallery=>gallery.Artworks);
   }
 }
 

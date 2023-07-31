@@ -1,0 +1,44 @@
+﻿@model InteractiveGallery.Core.GalleryAggregate.GalleryValueObject
+
+@{
+    ViewData["Title"] = "Details";
+	Layout = "~/Areas/AdminArea/Views/Shared/MyLayout.cshtml";
+}
+
+
+<h1>Details</h1>
+
+<div>
+    <h4>Gallery</h4>
+<div class="col-md-6 col-lg-12">
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">@Html.DisplayFor(model => model.Name)</h5>
+			<p class="card-text">Artist @Html.DisplayFor(model => model.InitiatorArtist.Name)</p>
+			<p class="card-text">Theme @Html.DisplayFor(model => model.Theme)</p>
+			<pr>
+			<p class="card-text">Artworks</p>
+
+				@foreach(var item in Model.Artworks)
+				{
+					<div class="col-md-6 col-lg-3">
+						<div class="card">
+							@*imaaaage*@
+							<img class="img-fluid" src="../images/big/img1.jpg" alt="">
+							<div class="card-body">
+								<h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+								<p class="card-text">Artist @Html.DisplayFor(modelItem => item.Description)</p>
+								<p class="card-text">Theme @Html.DisplayFor(modelItem => item.Price)</p>
+							</div>
+							<div>
+							</div>
+						</div>
+					</div>			
+				}
+					<button asp-action="Edit" asp-route-id="@Model?.Id" type="button" class="btn mb-1 btn-flat btn-outline-primary">Edit</button>
+					<button asp-action="Delete" asp-route-id="@Model?.Id" type="button" class="btn mb-1 btn-flat btn-outline-danger">Delete</button>
+					<a asp-action="Index">Back to List</a>
+		</div>
+	</div>
+</div>
+</div>

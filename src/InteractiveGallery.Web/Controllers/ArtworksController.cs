@@ -324,8 +324,7 @@ public class ArtworksController : Controller
     {
       var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images", artworkVO.Image.TrimStart('/'));
       if (System.IO.File.Exists(imagePath))
-      {
-        System.IO.File.Delete(imagePath);
+      {    System.IO.File.Delete(imagePath);
       }
     }
 

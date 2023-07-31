@@ -3,6 +3,7 @@ using InteractiveGallery.SharedKernel;
 using InteractiveGallery.SharedKernel.Interfaces;
 using InteractiveGallery.Core.ArtistAggregate.Events;
 using InteractiveGallery.Core.GalleryAggregate;
+using InteractiveGallery.Core.ArtistAggregate.Specifications;
 
 namespace InteractiveGallery.Core.ArtistAggregate;
 public class Artist : EntityBase , IAggregateRoot
@@ -69,14 +70,9 @@ public class Artist : EntityBase , IAggregateRoot
     Artworks.Add(artwork);
   }
 
-  public Artwork getArtworkbyId(int id)
+  public Artwork getArtworkbyId(int artworkId)
   {
-    foreach (Artwork artwork in Artworks)
-    {
-      if (artwork.Id == id)
-        return artwork;
-    }  
-    return null;
+    return Artworks.FirstOrDefault(a => a.Id == artworkId);
   }
 
   public void addGallery(Gallery gallery) {

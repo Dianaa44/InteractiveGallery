@@ -11,6 +11,9 @@ using InteractiveGallery.SharedKernel.Interfaces;
 using InteractiveGallery.Core.ArtistAggregate.Specifications;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using InteractiveGallery.Core.GalleryAggregate;
+using InteractiveGallery.Core.GalleryAggregate.Specifications;
+using InteractiveGallery.Web.ViewModels;
 
 namespace InteractiveGallery.Web.Controllers;
 
@@ -19,12 +22,14 @@ public class ArtistsController : Controller
     {
   private readonly IRepository<Artist> _artistRepository;
   private readonly UserManager<ApplicationUser> _userManager;
+  private readonly IRepository<Gallery> _galleryRepository;
   
 
-  public ArtistsController(IRepository<Artist> artistRepository,UserManager<ApplicationUser> userManager)
+  public ArtistsController(IRepository<Artist> artistRepository,UserManager<ApplicationUser> userManager,IRepository<Gallery> galleryRepository)
   {
     _artistRepository = artistRepository;
     _userManager = userManager;
+    _galleryRepository = galleryRepository;
   }
 
   [HttpGet]
@@ -45,12 +50,17 @@ public class ArtistsController : Controller
       return NotFound();
     }
 
+    
+
     var artistVO = new ArtistValueObject
     {
       Id = artist.Id,
       Name = artist.Name,
-      Biography = artist.Biography
+      Biography = artist.Biography,
     };
+    var gallerySpec = new GalleryByInitiatorArtistIdSpec(artist.Id);
+    artistVO.Galleries = await _galleryRepository.ListAsync(gallerySpec);
+    ViewBag.galleries = artistVO.Galleries;
     return View(artistVO);
   }
 
@@ -77,12 +87,13 @@ public class ArtistsController : Controller
     return View(artist);
   }
 
+
   // GET: Artists/Edit/5
   [HttpGet("edit/{id:int}")]
-  public async Task<IActionResult> Edit(int id)
+  public async Task<IActionResult> Edit()
   {
-
-      var spec = new ArtistByIdSpec(id);
+    string? identityGuid = _userManager.GetUserId(HttpContext.User);
+    var spec = new ArtistByIdentityGuidSpec(identityGuid);
       var artist = await _artistRepository.FirstOrDefaultAsync(spec);
               if (artist == null)
               {
@@ -102,18 +113,22 @@ public class ArtistsController : Controller
   // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
   [HttpPost("edit/{id:int}")]
   [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Biography,Id")] ArtistValueObject artistValueObject)
+        public async Task<IActionResult> Edit( [Bind("Name,Biography,Id")] ArtistValueObject artistValueObject)
         {
-            if (id != artistValueObject.Id)
+    string? identityGuid = _userManager.GetUserId(HttpContext.User);
+    var userSpec = new ArtistByIdentityGuidSpec(identityGuid);
+    var artist = await _artistRepository.FirstOrDefaultAsync(userSpec);
+    if (artist == null)
+    {
+      return NotFound();
+    }
+    if (artist.Id != artistValueObject.Id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-                 var spec = new ArtistByIdSpec(id);
-                 var artist= await _artistRepository.FirstOrDefaultAsync(spec);
-      if(artist == null) { return NotFound(); }
                  artist.updateArtist(artistValueObject);
                  await _artistRepository.UpdateAsync(artist);
                  await _artistRepository.SaveChangesAsync();
@@ -164,6 +179,29 @@ public class ArtistsController : Controller
             return RedirectToAction(nameof(Index));
         }
 
-        
+
+  [HttpGet("register")]
+  public IActionResult Register()
+  {
+    return View();
+  }
+
+  [HttpPost("register")]
+  public IActionResult Register(MultiStepsegisterViewModel model)
+  {
+    if (ModelState.IsValid)
+    {
+      // Process the artist registration data and create a new artist account
+      // Redirect to a success page or login page after successful registration.
+      return RedirectToAction(nameof(Index));
     }
+
+    // If the model state is invalid, redisplay the artist register view with validation errors.
+    return View(model);
+  }
+
+
+
+}
+
 
