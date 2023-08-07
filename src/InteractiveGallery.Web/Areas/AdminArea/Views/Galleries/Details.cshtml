@@ -24,21 +24,70 @@
 					<div class="col-md-6 col-lg-3">
 						<div class="card">
 							@*imaaaage*@
-							<img class="img-fluid" src="../images/big/img1.jpg" alt="">
-							<div class="card-body">
+                                <img src="~/ArtworkImages/@item.Image" asp-append-version="true" class="img-fluid">
+                                <div class="card-body">
 								<h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
-								<p class="card-text">Artist @Html.DisplayFor(modelItem => item.Description)</p>
-								<p class="card-text">Theme @Html.DisplayFor(modelItem => item.Price)</p>
+								<p class="card-text">Description @Html.DisplayFor(modelItem => item.Description)</p>
+								<p class="card-text">Price @Html.DisplayFor(modelItem => item.Price)</p>
 							</div>
 							<div>
+
+
+
+
+                                    @*<button type="button" class="btn btn-primary" onclick="showModal(@Model.Id,@item.Id)" data-toggle="modal" data-target="#editArtworkModal" >
+                                        Edit Artwork
+                                    </button>
+                                    <div id="editArtworkModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editArtworkModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div id="modal-container"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+*@
+                                  <a href="@Url.Action("EditArtwork","Galleries",new { area = "AdminArea" , galleryId=@Model.Id ,artworkId=item.Id})" type="button" class="btn mb-1 btn-flat btn-outline-primary">Edit</a>
+                                  <button asp-action="DeleteArtwork" asp-route-id="@item.Id" type="button" class="btn mb-1 btn-flat btn-outline-danger">Delete</button>
 							</div>
 						</div>
 					</div>			
+
 				}
-					<button asp-action="Edit" asp-route-id="@Model?.Id" type="button" class="btn mb-1 btn-flat btn-outline-primary">Edit</button>
+                   @* <div class="col-md-6 col-lg-3">
+                        <div class="card">
+                            <img class="img-fluid" src="../images/big/img1.jpg" alt="">
+                            <div class="card-body">
+                                <button asp-action="AddArtwork" asp-route-id="@Model?.InitiatorId" type="button" class="btn mb-1 btn-flat btn-outline-primary">Add Artwork</button>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                    </div>
+*@
+@*
+                    <button asp-action="Edit" asp-route-id="@Model?.Id" type="button" class="btn mb-1 btn-flat btn-outline-primary">Edit</button>
 					<button asp-action="Delete" asp-route-id="@Model?.Id" type="button" class="btn mb-1 btn-flat btn-outline-danger">Delete</button>
-					<a asp-action="Index">Back to List</a>
+*@					<a asp-action="Index">Back to List</a>
 		</div>
 	</div>
 </div>
 </div>
+
+<script>
+    function showModal(galleryId, artworkId) {
+        $.ajax({
+           
+            url: '/AdminArea/Galleries/' + galleryId + '/editArtworkModal/' + artworkId,
+            type: 'GET',
+            dataType: 'html',
+            success: function (response) {
+                $('#editArtworkModal .modal-content').html(response);
+                $('#editArtworkModal').modal('show');
+            },
+            error: function (msg) {
+                console.error(msg);
+            }
+        });
+    }
+</script>
+

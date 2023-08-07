@@ -4,6 +4,7 @@ using InteractiveGallery.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InteractiveGallery.Infrastructure.Migrations
 {
     [DbContext(typeof(InteractiveGalleryDbContext))]
-    partial class InteractiveGalleryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230807024513_ArtworkArtistIdNullable")]
+    partial class ArtworkArtistIdNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,7 +73,7 @@ namespace InteractiveGallery.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("description");
 
-                    b.Property<int?>("GalleryId")
+                    b.Property<int>("GalleryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
@@ -400,6 +403,7 @@ namespace InteractiveGallery.Infrastructure.Migrations
                     b.HasOne("InteractiveGallery.Core.GalleryAggregate.Gallery", "Gallery")
                         .WithMany("Artworks")
                         .HasForeignKey("GalleryId")
+                        .IsRequired()
                         .HasConstraintName("FK_Artwork_Gallery");
 
                     b.Navigation("Artist");

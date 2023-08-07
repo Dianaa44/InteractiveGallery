@@ -36,4 +36,20 @@ public class Gallery : EntityBase, IAggregateRoot
     InitiatorId = galleryValueObject.InitiatorId;
     InitiatorArtist = galleryValueObject.InitiatorArtist;
   }
+  public Artwork getArtworkById(int artworkId)
+  {
+    return Artworks.FirstOrDefault(a => a.Id == artworkId);
+  }
+
+  public void updateArtwork(ArtworkValueObject artworkValueObject)
+  {
+
+  }
+
+  public void deleteArtwork(Artwork artwork)
+  {
+    Artworks.Remove(artwork);
+
+
+  }
 }

@@ -180,25 +180,25 @@ public class ArtistsController : Controller
         }
 
 
-  [HttpGet("register")]
-  public IActionResult Register()
-  {
-    return View();
-  }
+  //[HttpGet("register")]
+  //public IActionResult Register()
+  //{
+  //  return View();
+  //}
 
-  [HttpPost("register")]
-  public IActionResult Register(MultiStepsegisterViewModel model)
-  {
-    if (ModelState.IsValid)
-    {
-      // Process the artist registration data and create a new artist account
-      // Redirect to a success page or login page after successful registration.
-      return RedirectToAction(nameof(Index));
-    }
+  //[HttpPost("register")]
+  //public IActionResult Register(RegisterationViewModel model)
+  //{
+  //  if (ModelState.IsValid)
+  //  {
+  //    // Process the artist registration data and create a new artist account
+  //    // Redirect to a success page or login page after successful registration.
+  //    return RedirectToAction(nameof(Index));
+  //  }
 
-    // If the model state is invalid, redisplay the artist register view with validation errors.
-    return View(model);
-  }
+  //  // If the model state is invalid, redisplay the artist register view with validation errors.
+  //  return View(model);
+  //}
 
 
 

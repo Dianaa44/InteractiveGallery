@@ -8,6 +8,6 @@ public class ArtistByIdSpec : Specification<Artist>, ISingleResultSpecification
   public ArtistByIdSpec(int artistId)
   {
     Query
-        .Where(artist => artist.Id == artistId).Include(artist=>artist.Artworks);
+        .Where(artist => artist.Id == artistId).Include(artist=>artist.Artworks).Include(artist=>artist.Galleries);
   }
 }

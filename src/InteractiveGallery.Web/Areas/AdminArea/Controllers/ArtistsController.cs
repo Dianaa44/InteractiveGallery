@@ -19,7 +19,6 @@ using Microsoft.AspNetCore.Hosting;
 using InteractiveGallery.Core.CategoryAggregate;
 
 namespace InteractiveGallery.Web.Areas.AdminArea.Controllers;
-
 [Area("AdminArea")]
 [Route("AdminArea/[controller]")]
 [Authorize(Roles = "Admin")]
@@ -41,7 +40,7 @@ public class ArtistsController : Controller
     _webHostEnvironment = webHostEnvironment;
   }
 
-  [HttpGet ]
+  [HttpGet]
   public async Task<IActionResult> Index()
   {
     var artists = await _artistRepository.ListAsync();
@@ -98,11 +97,10 @@ public class ArtistsController : Controller
 
 
   // GET: Artists/Edit/5
-  [HttpGet("edit/{id:int}")]
-  public async Task<IActionResult> Edit()
+  [HttpGet("edit/{artistId:int}")]
+  public async Task<IActionResult> Edit(int artistId)
   {
-    string? identityGuid = _userManager.GetUserId(HttpContext.User);
-    var spec = new ArtistByIdentityGuidSpec(identityGuid);
+    var spec = new ArtistByIdSpec(artistId);
       var artist = await _artistRepository.FirstOrDefaultAsync(spec);
               if (artist == null)
               {
@@ -120,22 +118,17 @@ public class ArtistsController : Controller
   // POST: Artists/Edit/5
   // To protect from overposting attacks, enable the specific properties you want to bind to.
   // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-  [HttpPost("edit/{id:int}")]
+  [HttpPost("edit/{artistId:int}")]
   [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit( [Bind("Name,Biography,Id")] ArtistValueObject artistValueObject)
+        public async Task<IActionResult> Edit(int artistId, [Bind("Name,Biography,Id")] ArtistValueObject artistValueObject)
         {
-    string? identityGuid = _userManager.GetUserId(HttpContext.User);
-    var userSpec = new ArtistByIdentityGuidSpec(identityGuid);
-    var artist = await _artistRepository.FirstOrDefaultAsync(userSpec);
+    if (artistId != artistValueObject.Id) return NotFound();
+    var Spec = new ArtistByIdSpec(artistId);
+    var artist = await _artistRepository.FirstOrDefaultAsync(Spec);
     if (artist == null)
     {
       return NotFound();
     }
-    if (artist.Id != artistValueObject.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                  artist.updateArtist(artistValueObject);
@@ -189,25 +182,25 @@ public class ArtistsController : Controller
         }
 
 
-  [HttpGet("register")]
-  public IActionResult Register()
-  {
-    return View();
-  }
+  //[HttpGet("register")]
+  //public IActionResult Register()
+  //{
+  //  return View();
+  //}
 
-  [HttpPost("register")]
-  public IActionResult Register(MultiStepsegisterViewModel model)
-  {
-    if (ModelState.IsValid)
-    {
-      // Process the artist registration data and create a new artist account
-      // Redirect to a success page or login page after successful registration.
-      return RedirectToAction(nameof(Index));
-    }
+  //[HttpPost("register")]
+  //public IActionResult Register(MultiStepsegisterViewModel model)
+  //{
+  //  if (ModelState.IsValid)
+  //  {
+  //    // Process the artist registration data and create a new artist account
+  //    // Redirect to a success page or login page after successful registration.
+  //    return RedirectToAction(nameof(Index));
+  //  }
 
-    // If the model state is invalid, redisplay the artist register view with validation errors.
-    return View(model);
-  }
+  //  // If the model state is invalid, redisplay the artist register view with validation errors.
+  //  return View(model);
+  //}
 
 
 
@@ -237,7 +230,7 @@ public class ArtistsController : Controller
   }
 
   // GET: Artworks/Create
-  [HttpGet("createArtwork/{artistId:int}")]
+  [HttpGet("details/{artistId:int}/createArtwork")]
   public async Task<IActionResult> CreateArtworkAsync(int artistId)
   {
     var spec = new ArtistByIdSpec(artistId);
@@ -280,7 +273,7 @@ public class ArtistsController : Controller
   // To protect from overposting attacks, enable the specific properties you want to bind to.
   // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
   //[HttpPost]
-  [HttpPost("createArtwork/{artistId:int}")]
+  [HttpPost("details/{artistId:int}/createArtwork")]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> CreateArtworkAsync(int artistId, ArtworkValueObject artworkValueObject)
   {
@@ -290,22 +283,22 @@ public class ArtistsController : Controller
     if (artist == null) { return NotFound(); }
     artworkValueObject.Status = ArtworkStatus.Available;
     artworkValueObject.ArtistId = artist.Id;
-    artworkValueObject.Artist = artist;
+    //artworkValueObject.Artist = artist;
     
     string filename = UploadFile(artworkValueObject);
     artworkValueObject.Image = filename;
 
     var specCategory = new CategoryByIdSpec(artworkValueObject.CategoryId);
     var specGallery = new GalleryByIdSpec(artworkValueObject.GalleryId);
-    artworkValueObject.Category = await _categoryRepository.FirstOrDefaultAsync(specCategory);
-    artworkValueObject.Gallery = await _galleryRepository.FirstOrDefaultAsync(specGallery);
+    //artworkValueObject.Category = await _categoryRepository.FirstOrDefaultAsync(specCategory);
+    var gallery = await _galleryRepository.FirstOrDefaultAsync(specGallery);
 
     var artwork = new Artwork(artworkValueObject);
 
     if (ModelState.IsValid)
     {
       artist.addArtwork(artwork);
-      var gallery = artworkValueObject.Gallery;
+      //var gallery = artworkValueObject.Gallery;
       if (gallery == null) { return NotFound(); }
       await _galleryRepository.UpdateAsync(gallery);
       await _artistRepository.SaveChangesAsync();
@@ -317,95 +310,81 @@ public class ArtistsController : Controller
   }
 
 
-  [HttpGet("{artistId:int}/editArtwork/{artworkId:int}")]
+  //[HttpGet("{artistId:int}/editArtwork/{artworkId:int}")]
 
-  public async Task<IActionResult> Edit(int artistId,int artworkId)
-  {
-    var spec = new ArtistByIdSpec(artistId);
-    var artist = await _artistRepository.FirstOrDefaultAsync(spec);
-    if (artist == null)
-    {
-      return NotFound();
-    }
+  //public async Task<IActionResult> EditArtwork(int artistId,int artworkId)
+  //{
+  //  var spec = new ArtistByIdSpec(artistId);
+  //  var artist = await _artistRepository.FirstOrDefaultAsync(spec);
+  //  if (artist == null)
+  //  {
+  //    return NotFound();
+  //  }
 
-    var gallerySpec = new GalleryByInitiatorArtistIdSpec(artistId);
-    var galleries = await _galleryRepository.ListAsync(gallerySpec);
-    List<SelectListItem> selectListGalleries = galleries
-    .Select(c => new SelectListItem
-    {
-      Value = c.Id.ToString(),
-      Text = c.Name
-    })
-    .ToList();
-    ViewBag.galleries = selectListGalleries;
+  //  var gallerySpec = new GalleryByInitiatorArtistIdSpec(artistId);
+  //  var galleries = await _galleryRepository.ListAsync(gallerySpec);
+  //  List<SelectListItem> selectListGalleries = galleries
+  //  .Select(c => new SelectListItem
+  //  {
+  //    Value = c.Id.ToString(),
+  //    Text = c.Name
+  //  })
+  //  .ToList();
+  //  ViewBag.galleries = selectListGalleries;
 
-    //ViewBag.joinedGalleries = artist.JoinedGalleries.ToList();
-    ViewBag.artist = artist;
+  //  //ViewBag.joinedGalleries = artist.JoinedGalleries.ToList();
+  //  ViewBag.artist = artist;
 
-    var categories = await _categoryRepository.ListAsync();
-    List<SelectListItem> selectListCategories = categories
-    .Select(c => new SelectListItem
-    {
-      Value = c.Id.ToString(),
-      Text = c.Name
-    })
-    .ToList();
-    ViewBag.categories = selectListCategories;
-
-
-    var artwork = artist.getArtworkbyId(artworkId);
-    if (artwork == null)
-    {
-      return NotFound();
-    }
-    var artworkVO = new ArtworkValueObject
-    {
-      Id = artwork.Id,
-      Name = artwork.Name,
-      Price = artwork.Price,
-      Category = artwork.Category,
-      CategoryId = artwork.CategoryId,
-      Artist = artwork.Artist,
-      ArtistId = artwork.ArtistId,
-      Description = artwork.Description,
-      Gallery = artwork.Gallery,
-      GalleryId = artwork.GalleryId,
-      Image = artwork.Image,
-      Status = artwork.Status,
-    };
+  //  var categories = await _categoryRepository.ListAsync();
+  //  List<SelectListItem> selectListCategories = categories
+  //  .Select(c => new SelectListItem
+  //  {
+  //    Value = c.Id.ToString(),
+  //    Text = c.Name
+  //  })
+  //  .ToList();
+  //  ViewBag.categories = selectListCategories;
 
 
-    return View(artwork);
-  }
+  //  var artwork = artist.getArtworkbyId(artworkId);
+  //  if (artwork == null)
+  //  {
+  //    return NotFound();
+  //  }
+  //  var artworkVO = new ArtworkValueObject(artwork);
 
-  // POST: Artworks/Edit/5
-  // To protect from overposting attacks, enable the specific properties you want to bind to.
-  // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-  [HttpPost("{artistId:int}/editArtwork/{artworkId:int}")]
-  [ValidateAntiForgeryToken]
-  public async Task<IActionResult> Edit(int artworkId, [Bind("Name,Price,Status,CategoryId,ArtistId,GalleryId,Image,Description,Id")] ArtworkValueObject artworkValueObject)
-  {
-    if (artworkId != artworkValueObject.Id)
-    {
-      return NotFound();
-    }
 
-    if (ModelState.IsValid)
-    {
-      int artistId = 1;
-      var spec = new ArtistByIdSpec(artistId);
-      var artist = await _artistRepository.FirstOrDefaultAsync(spec);
-      if (artist == null)
-      {
-        return NotFound();
-      }
-      artist.updateArtwork(artworkValueObject);
-      await _artistRepository.UpdateAsync(artist);
-      await _artistRepository.SaveChangesAsync();
-      return RedirectToAction(nameof(Index));
-    }
-    return View(artworkValueObject);
-  }
+  //  return View(artwork);
+  //}
+
+  //// POST: Artworks/Edit/5
+  //// To protect from overposting attacks, enable the specific properties you want to bind to.
+  //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+  //[HttpPost("{artistId:int}/editArtwork/{artworkId:int}")]
+  //[ValidateAntiForgeryToken]
+  //public async Task<IActionResult> EditArtwork(int artworkId, [Bind("Name,Price,Status,CategoryId,ArtistId,GalleryId,Image,Description,Id")] ArtworkValueObject artworkValueObject)
+  //{
+  //  if (artworkId != artworkValueObject.Id)
+  //  {
+  //    return NotFound();
+  //  }
+
+  //  if (ModelState.IsValid)
+  //  {
+  //    int artistId = 1;
+  //    var spec = new ArtistByIdSpec(artistId);
+  //    var artist = await _artistRepository.FirstOrDefaultAsync(spec);
+  //    if (artist == null)
+  //    {
+  //      return NotFound();
+  //    }
+  //    artist.updateArtwork(artworkValueObject);
+  //    await _artistRepository.UpdateAsync(artist);
+  //    await _artistRepository.SaveChangesAsync();
+  //    return RedirectToAction(nameof(Index));
+  //  }
+  //  return View(artworkValueObject);
+  //}
 }
 
 

@@ -81,11 +81,23 @@ public class Artist : EntityBase , IAggregateRoot
 
     }
 
-  public void updateArtwork(ArtworkValueObject artworkValueObject)
+  public void updateArtwork(Artwork artwork)
   {
+   this.getArtworkbyId(artwork.Id).update(artwork);
+  }
+  public void deleteArtwork(Artwork artwork)
+  {
+    Artworks.Remove(artwork);
+    if (Artworks.Count == 0)
+      Artworks = new List<Artwork>();
+  }
+  public void deleteArtwork2(Artwork artwork)
+  {
+    
+    Artworks.Remove(artwork);
 
   }
 
- 
+
 }
 

@@ -244,16 +244,25 @@
 				<ul class="metismenu" id="menu">
 
 					<li>
-						<a href="widgets.html" aria-expanded="false">
-							<i class="icon-badge menu-icon"></i><span class="nav-text">Galleries</span>
+                        <a href="@Url.Action("Index","Galleries",new { area = "AdminArea" })" aria-expanded="false">
+                            <i class="icon-badge menu-icon"></i><span class="nav-text">Galleries</span>
 						</a>
 					</li>
 
 					<li>
-						<a href="widgets.html" aria-expanded="false">
-							<i class="icon-badge menu-icon"></i><span class="nav-text">Artists</span>
+                        <a href="@Url.Action("Index","Artists",new { area = "AdminArea" })" aria-expanded="false">
+                            <i class="icon-badge menu-icon"></i><span class="nav-text">Artists</span>
 						</a>
 					</li>
+
+
+
+                    <li>
+                        <a href="@Url.Action("Index","Categories",new { area = "AdminArea" })" aria-expanded="false">
+                            <i class="icon-badge menu-icon"></i><span class="nav-text">Artists</span>
+                        </a>
+                    </li>
+
 
 				</ul>
 			</div>

@@ -11,7 +11,7 @@ public class ArtworksByArtistIdSpec: Specification<Artwork>
   public ArtworksByArtistIdSpec(int artistId)
   {
     Query
-        .Where(artwork => artwork.ArtistId==artistId);
+        .Where(artwork => artwork.ArtistId==artistId).Include(artwork=>artwork.Artist).Include(artwork => artwork.Gallery).Include(artwork => artwork.Category);
   }
 }
 

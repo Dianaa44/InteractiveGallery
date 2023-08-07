@@ -19,8 +19,8 @@ public class Artwork : EntityBase
 
   public ArtworkStatus  Status { get; private set; }
   public int CategoryId { get; private set; }
- public int ArtistId { get; private set; }
-  public int GalleryId { get; private set; }
+ public int? ArtistId { get; private set; }
+  public int? GalleryId { get; private set; }
   public string Image { get; private set; }
  public string Description { get; private set; }
 
@@ -56,10 +56,46 @@ public class Artwork : EntityBase
     this.CategoryId = artworkValueObject.CategoryId;
     this.ArtistId = artworkValueObject.ArtistId;
     this.GalleryId= artworkValueObject.GalleryId;
-    this.Artist= artworkValueObject.Artist;
-    this.Gallery= artworkValueObject.Gallery;
-    this.Category= artworkValueObject.Category;
+
+    //this.Artist= artworkValueObject.Artist;
+    //this.Gallery= artworkValueObject.Gallery;
+    //this.Category= artworkValueObject.Category;
   }
 
 
+  public Artwork(ArtworkValueObject artworkValueObject,Artist artist,Gallery gallery,Category category)
+  {
+    this.Id=artworkValueObject.Id;
+    this.Status = artworkValueObject.Status;
+    this.Name = artworkValueObject.Name;
+    this.Description = artworkValueObject.Description;
+    this.Image = artworkValueObject.Image;
+    this.Price = artworkValueObject.Price;
+    this.CategoryId = artworkValueObject.CategoryId;
+    this.ArtistId = artworkValueObject.ArtistId;
+    this.GalleryId = artworkValueObject.GalleryId;
+
+    this.Artist= artist;
+    this.Gallery= gallery;
+    this.Category= category;
+  }
+  public void update(Artwork artwork)
+  {
+    this.Status = artwork.Status;
+    this.Name = artwork.Name;
+    this.Description = artwork.Description;
+    this.Image = artwork.Image;
+    this.Price = artwork.Price;
+    this.CategoryId = artwork.CategoryId;
+    this.ArtistId = artwork.ArtistId;
+    this.GalleryId = artwork.GalleryId;
+    this.Category = artwork.Category;
+    this.Artist = artwork.Artist;
+    this.Gallery= artwork.Gallery;
+  }
+  public void deleteRefrences()
+  {
+    this.ArtistId = null;
+    this.GalleryId = null;
+  }
 }

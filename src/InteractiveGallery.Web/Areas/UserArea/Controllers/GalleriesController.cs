@@ -17,7 +17,7 @@ using System.Data;
 
 namespace InteractiveGallery.Web.Areas.UserArea.Controllers;
 [Area("UserArea")]
-[Route("[controller]")]
+[Route("UserArea/[controller]")]
 [Authorize(Roles = "User")]
 public class GalleriesController : Controller
     {
@@ -65,9 +65,19 @@ public class GalleriesController : Controller
 
   // GET: Galleries/Create
   [HttpGet("create")]
-  public IActionResult Create()
+  public async Task<IActionResult> Create()
         {
-            return View();
+
+    var artists = await _artistRepository.ListAsync();
+    List<SelectListItem> selectListGalleries = artists
+    .Select(c => new SelectListItem
+    {
+      Value = c.Id.ToString(),
+      Text = c.Name
+    })
+    .ToList();
+    ViewBag.artists = selectListGalleries;
+    return View();
         }
 
   // POST: Galleries/Create
@@ -115,6 +125,7 @@ public class GalleriesController : Controller
       InitiatorId = gallery.InitiatorId
       
     };
+
     return View(galleryVO);
   }
 
@@ -186,6 +197,54 @@ public class GalleriesController : Controller
     await _galleryRepository.SaveChangesAsync();
     return RedirectToAction(nameof(Index));
   }
+
+
+  // GET: Galleries/Create
+  [HttpPost("createMainGallery")]
+  public async Task<IActionResult> CreateMainGallery()
+  {
+    string? artistIdentityGuid = _userManager.GetUserId(HttpContext.User);
+    var initiatorspec = new ArtistByIdentityGuidSpec(artistIdentityGuid);
+    var initiatorUser = await _artistRepository.FirstOrDefaultAsync(initiatorspec);
+    if (initiatorUser == null) { return NotFound(); }
+    //to get Id
+    var galleryVO = new GalleryValueObject()
+    {
+      Name = "your main gallery",
+      Theme = "None",
+      InitiatorId = initiatorUser.Id
+    };
+    var gallery = new Gallery(galleryVO);
+    await _galleryRepository.AddAsync(gallery);
+    await _galleryRepository.SaveChangesAsync();
+    return RedirectToAction(nameof(Index));
+  }
+
+  // POST: Galleries/Create
+  // To protect from overposting attacks, enable the specific properties you want to bind to.
+  // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+  //[HttpPost("create")]
+  //[ValidateAntiForgeryToken]
+  //public async Task<IActionResult> Create(GalleryValueObject galleryValueObject)
+  //{
+
+  //  string? artistIdentityGuid = _userManager.GetUserId(HttpContext.User);
+  //  var initiatorspec = new ArtistByIdentityGuidSpec(artistIdentityGuid);
+  //  var initiatorUser = await _artistRepository.FirstOrDefaultAsync(initiatorspec);
+  //  if (initiatorUser == null) { return NotFound(); }
+  //  //galleryValueObject.InitiatorArtist = initiatorUser;
+  //  var gallery = new Gallery(galleryValueObject);
+  //  if (ModelState.IsValid)
+  //  {
+  //    initiatorUser.addGallery(gallery);
+  //    await _artistRepository.UpdateAsync(initiatorUser);
+  //    await _artistRepository.SaveChangesAsync();
+  //    await _galleryRepository.AddAsync(gallery);
+  //    await _galleryRepository.SaveChangesAsync();
+  //    return RedirectToAction(nameof(Index));
+  //  }
+  //  return View(gallery);
+  //}
 
 }
 
