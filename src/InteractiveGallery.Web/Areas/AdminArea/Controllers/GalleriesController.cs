@@ -47,7 +47,6 @@ public class GalleriesController : Controller
     return View(galleries.ToArray());
   }
 
-  // GET: Galleries/Details/5
   [HttpGet("details/{id:int}")]
   public async Task<IActionResult> Details(int id)
   {
@@ -65,10 +64,19 @@ public class GalleriesController : Controller
       Name = gallery.Name,
       Theme = gallery.Theme,
       InitiatorId = gallery.InitiatorId,
-      InitiatorArtist= artist,
-      Artworks=gallery.Artworks
+      InitiatorArtist = artist,
+      Artworks = gallery.Artworks
     };
     return View(galleryVO);
+  }
+
+
+
+  // GET: Galleries/Details/5
+  [HttpGet("detailsGallery")]
+  public  IActionResult DetailsGallery()
+  {
+    return View();
   }
 
   // GET: Galleries/Create
@@ -338,7 +346,7 @@ public class GalleriesController : Controller
     await _artistRepository.SaveChangesAsync();
     return RedirectToAction(nameof(Index));
   }
-
+  
 
 
 }
