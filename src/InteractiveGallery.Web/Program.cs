@@ -15,8 +15,10 @@ using Serilog;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.Metrics;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.StaticFiles;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
@@ -86,6 +88,16 @@ else
   app.UseExceptionHandler("/Home/Error");
   app.UseHsts();
 }
+
+StaticFileOptions options = new StaticFileOptions { ContentTypeProvider = new FileExtensionContentTypeProvider() };
+options.ServeUnknownFileTypes = true;
+app.UseStaticFiles(options);
+
+builder.Services.AddDirectoryBrowser();
+
+
+
+
 app.UseRouting();
 app.UseAuthorization();
 app.UseAuthentication();

@@ -1,0 +1,883 @@
+2023-08-08 18:20:56.966 -07:00 [INF] Registered 1 endpoints in 2463 milliseconds.
+2023-08-08 18:21:00.346 -07:00 [INF] User profile is available. Using 'C:\Users\diana\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-08-08 18:21:13.875 -07:00 [INF] Executed DbCommand (184ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-08-08 18:21:14.493 -07:00 [INF] Executed DbCommand (573ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2023-08-08 18:21:16.047 -07:00 [INF] Executed DbCommand (439ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-08-08 18:21:16.264 -07:00 [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-08-08 18:21:16.483 -07:00 [INF] Executed DbCommand (99ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2023-08-08 18:21:17.254 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-08-08 18:21:17.254 -07:00 [INF] Hosting environment: Development
+2023-08-08 18:21:17.255 -07:00 [INF] Content root path: D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web
+2023-08-08 18:21:17.401 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2023-08-08 18:21:18.177 -07:00 [WRN] Failed to determine the https port for redirect.
+2023-08-08 18:21:18.350 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web)'
+2023-08-08 18:21:18.385 -07:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller InteractiveGallery.Web.Controllers.HomeController (InteractiveGallery.Web).
+2023-08-08 18:21:18.890 -07:00 [INF] Executing action method InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:21:18.900 -07:00 [INF] Executed action method InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 1.7628ms.
+2023-08-08 18:21:18.953 -07:00 [INF] Executing ViewResult, running view Index.
+2023-08-08 18:21:19.882 -07:00 [INF] Executed ViewResult - view Index executed in 953.549ms.
+2023-08-08 18:21:19.892 -07:00 [INF] Executed action InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web) in 1505.9469ms
+2023-08-08 18:21:19.894 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web)'
+2023-08-08 18:21:20.154 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 2760.3719ms
+2023-08-08 18:21:20.270 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/logo.png - -
+2023-08-08 18:21:20.283 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/css/style.css - -
+2023-08-08 18:21:20.296 -07:00 [INF] The file /css/style.css was not modified
+2023-08-08 18:21:20.296 -07:00 [INF] The file /images/logo.png was not modified
+2023-08-08 18:21:20.300 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/css/style.css - - - 304 - text/css 16.7095ms
+2023-08-08 18:21:20.300 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/logo.png - - - 304 - image/png 29.2235ms
+2023-08-08 18:21:20.335 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/plugins/common/common.min.js - -
+2023-08-08 18:21:20.337 -07:00 [INF] The file /plugins/common/common.min.js was not modified
+2023-08-08 18:21:20.337 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/settings.js - -
+2023-08-08 18:21:20.337 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/plugins/common/common.min.js - - - 304 - text/javascript 2.7634ms
+2023-08-08 18:21:20.338 -07:00 [INF] The file /js/settings.js was not modified
+2023-08-08 18:21:20.338 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/settings.js - - - 304 - text/javascript 1.1506ms
+2023-08-08 18:21:20.339 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/styleSwitcher.js - -
+2023-08-08 18:21:20.340 -07:00 [INF] The file /js/styleSwitcher.js was not modified
+2023-08-08 18:21:20.341 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/styleSwitcher.js - - - 304 - text/javascript 1.5540ms
+2023-08-08 18:21:20.484 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/gleek.js - -
+2023-08-08 18:21:20.485 -07:00 [INF] The file /js/gleek.js was not modified
+2023-08-08 18:21:20.486 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/gleek.js - - - 304 - text/javascript 2.0797ms
+2023-08-08 18:21:20.487 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:21:20.488 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/logo-compact.png - -
+2023-08-08 18:21:20.489 -07:00 [INF] The file /images/logo-compact.png was not modified
+2023-08-08 18:21:20.492 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/logo-compact.png - - - 304 - image/png 1.7946ms
+2023-08-08 18:21:20.496 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 8.1040ms
+2023-08-08 18:21:20.594 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/custom.min.js - -
+2023-08-08 18:21:20.594 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/avatar/1.jpg - -
+2023-08-08 18:21:20.594 -07:00 [INF] The file /js/custom.min.js was not modified
+2023-08-08 18:21:20.595 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/custom.min.js - - - 304 - text/javascript 0.9876ms
+2023-08-08 18:21:20.595 -07:00 [INF] The file /images/avatar/1.jpg was not modified
+2023-08-08 18:21:20.597 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/avatar/1.jpg - - - 304 - image/jpeg 2.4831ms
+2023-08-08 18:21:20.600 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/avatar/2.jpg - -
+2023-08-08 18:21:20.601 -07:00 [INF] The file /images/avatar/2.jpg was not modified
+2023-08-08 18:21:20.603 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/avatar/2.jpg - - - 304 - image/jpeg 2.7424ms
+2023-08-08 18:21:20.614 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/user/1.png - -
+2023-08-08 18:21:20.614 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/avatar/4.jpg - -
+2023-08-08 18:21:20.614 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/avatar/3.jpg - -
+2023-08-08 18:21:20.615 -07:00 [INF] The file /images/avatar/4.jpg was not modified
+2023-08-08 18:21:20.615 -07:00 [INF] The file /images/avatar/3.jpg was not modified
+2023-08-08 18:21:20.615 -07:00 [INF] The file /images/user/1.png was not modified
+2023-08-08 18:21:20.615 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/avatar/4.jpg - - - 304 - image/jpeg 1.2047ms
+2023-08-08 18:21:20.615 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/avatar/3.jpg - - - 304 - image/jpeg 1.3531ms
+2023-08-08 18:21:20.615 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/user/1.png - - - 304 - image/png 1.3977ms
+2023-08-08 18:21:20.617 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/logo-text.png - -
+2023-08-08 18:21:20.618 -07:00 [INF] The file /images/logo-text.png was not modified
+2023-08-08 18:21:20.618 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/logo-text.png - - - 304 - image/png 1.1083ms
+2023-08-08 18:21:20.682 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/font-awesome/css/font-awesome.min.css - -
+2023-08-08 18:21:20.682 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/cryptocoins/css/cryptocoins.css - -
+2023-08-08 18:21:20.683 -07:00 [INF] The file /icons/font-awesome/css/font-awesome.min.css was not modified
+2023-08-08 18:21:20.683 -07:00 [INF] The file /icons/cryptocoins/css/cryptocoins.css was not modified
+2023-08-08 18:21:20.683 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/font-awesome/css/font-awesome.min.css - - - 304 - text/css 0.7670ms
+2023-08-08 18:21:20.683 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/cryptocoins/css/cryptocoins.css - - - 304 - text/css 0.7842ms
+2023-08-08 18:21:20.683 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/ionicons/css/ionicons.css - -
+2023-08-08 18:21:20.683 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/themify-icons/themify-icons.css - -
+2023-08-08 18:21:20.684 -07:00 [INF] The file /icons/themify-icons/themify-icons.css was not modified
+2023-08-08 18:21:20.684 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/themify-icons/themify-icons.css - - - 304 - text/css 1.0304ms
+2023-08-08 18:21:20.685 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/linea-icons/linea.css - -
+2023-08-08 18:21:20.685 -07:00 [INF] The file /icons/linea-icons/linea.css was not modified
+2023-08-08 18:21:20.686 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/linea-icons/linea.css - - - 304 - text/css 0.7477ms
+2023-08-08 18:21:20.686 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/cryptocoins/css/cryptocoins-colors.css - -
+2023-08-08 18:21:20.688 -07:00 [INF] The file /icons/cryptocoins/css/cryptocoins-colors.css was not modified
+2023-08-08 18:21:20.689 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/cryptocoins/css/cryptocoins-colors.css - - - 304 - text/css 5.8863ms
+2023-08-08 18:21:20.686 -07:00 [INF] The file /icons/ionicons/css/ionicons.css was not modified
+2023-08-08 18:21:20.689 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/ionicons/css/ionicons.css - - - 304 - text/css 6.0283ms
+2023-08-08 18:21:20.702 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/simple-line-icons/css/simple-line-icons.css - -
+2023-08-08 18:21:20.702 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/plugins/bootstrap-select/dist/css/bootstrap-select.min.css - -
+2023-08-08 18:21:20.703 -07:00 [INF] The file /icons/simple-line-icons/css/simple-line-icons.css was not modified
+2023-08-08 18:21:20.703 -07:00 [INF] The file /plugins/bootstrap-select/dist/css/bootstrap-select.min.css was not modified
+2023-08-08 18:21:20.703 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/simple-line-icons/css/simple-line-icons.css - - - 304 - text/css 1.2687ms
+2023-08-08 18:21:20.703 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/plugins/bootstrap-select/dist/css/bootstrap-select.min.css - - - 304 - text/css 1.6582ms
+2023-08-08 18:21:20.704 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/material-design-iconic-font/materialdesignicons.min.css - -
+2023-08-08 18:21:20.704 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/plugins/animate/animate.min.css - -
+2023-08-08 18:21:20.704 -07:00 [INF] The file /icons/material-design-iconic-font/materialdesignicons.min.css was not modified
+2023-08-08 18:21:20.705 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/material-design-iconic-font/materialdesignicons.min.css - - - 304 - text/css 1.0997ms
+2023-08-08 18:21:20.705 -07:00 [INF] The file /plugins/animate/animate.min.css was not modified
+2023-08-08 18:21:20.705 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/pe-icon-set-weather/css/pe-icon-set-weather.min.css - -
+2023-08-08 18:21:20.705 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/plugins/animate/animate.min.css - - - 304 - text/css 1.4589ms
+2023-08-08 18:21:20.705 -07:00 [INF] The file /icons/pe-icon-set-weather/css/pe-icon-set-weather.min.css was not modified
+2023-08-08 18:21:20.706 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/pe-icon-set-weather/css/pe-icon-set-weather.min.css - - - 304 - text/css 0.8657ms
+2023-08-08 18:21:20.706 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/plugins/metismenu/css/metisMenu.min.css - -
+2023-08-08 18:21:20.724 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/weather-icons/css/weather-icons.min.css - -
+2023-08-08 18:21:20.724 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/flag-icon-css/flag-icon.min.css - -
+2023-08-08 18:21:20.724 -07:00 [INF] The file /plugins/metismenu/css/metisMenu.min.css was not modified
+2023-08-08 18:21:20.724 -07:00 [INF] The file /icons/weather-icons/css/weather-icons.min.css was not modified
+2023-08-08 18:21:20.724 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/plugins/metismenu/css/metisMenu.min.css - - - 304 - text/css 18.1195ms
+2023-08-08 18:21:20.724 -07:00 [INF] The file /icons/flag-icon-css/flag-icon.min.css was not modified
+2023-08-08 18:21:20.724 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/flag-icon-css/flag-icon.min.css - - - 304 - text/css 0.7791ms
+2023-08-08 18:21:20.724 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/weather-icons/css/weather-icons.min.css - - - 304 - text/css 0.7421ms
+2023-08-08 18:21:20.725 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:21:21.290 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 564.9640ms
+2023-08-08 18:21:21.404 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/material-design-iconic-font/fonts/materialdesignicons-webfont.woff2?v=2.4.85 - -
+2023-08-08 18:21:21.406 -07:00 [INF] The file /icons/material-design-iconic-font/fonts/materialdesignicons-webfont.woff2 was not modified
+2023-08-08 18:21:21.406 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/material-design-iconic-font/fonts/materialdesignicons-webfont.woff2?v=2.4.85 - - - 304 - font/woff2 1.6533ms
+2023-08-08 18:21:21.407 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/font-awesome/fonts/fontawesome-webfont3e6e.woff2?v=4.7.0 - -
+2023-08-08 18:21:21.408 -07:00 [INF] The file /icons/font-awesome/fonts/fontawesome-webfont3e6e.woff2 was not modified
+2023-08-08 18:21:21.414 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/font-awesome/fonts/fontawesome-webfont3e6e.woff2?v=4.7.0 - - - 304 - font/woff2 6.2789ms
+2023-08-08 18:21:21.414 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/simple-line-icons/fonts/Simple-Line-Icons4c82.ttf?-i3a2kk - -
+2023-08-08 18:21:21.414 -07:00 [INF] The file /icons/simple-line-icons/fonts/Simple-Line-Icons4c82.ttf was not modified
+2023-08-08 18:21:21.415 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/simple-line-icons/fonts/Simple-Line-Icons4c82.ttf?-i3a2kk - - - 304 - application/x-font-ttf 1.0249ms
+2023-08-08 18:21:24.822 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Identity/Account/Login - -
+2023-08-08 18:21:24.832 -07:00 [INF] Executing endpoint '/Account/Login'
+2023-08-08 18:21:25.100 -07:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2023-08-08 18:21:25.308 -07:00 [INF] Executing handler method InteractiveGallery.Web.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2023-08-08 18:21:25.350 -07:00 [INF] AuthenticationScheme: Identity.External signed out.
+2023-08-08 18:21:25.360 -07:00 [INF] Executed handler method OnGetAsync, returned result .
+2023-08-08 18:21:25.365 -07:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2023-08-08 18:21:25.365 -07:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2023-08-08 18:21:26.532 -07:00 [INF] Executed page /Account/Login in 1431.2747ms
+2023-08-08 18:21:26.532 -07:00 [INF] Executed endpoint '/Account/Login'
+2023-08-08 18:21:26.541 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Identity/Account/Login - - - 200 - text/html;+charset=utf-8 1718.2749ms
+2023-08-08 18:21:26.558 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2023-08-08 18:21:26.559 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - -
+2023-08-08 18:21:26.562 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2023-08-08 18:21:26.563 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:21:26.565 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 2.3495ms
+2023-08-08 18:21:26.597 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - -
+2023-08-08 18:21:26.651 -07:00 [INF] The file /lib/bootstrap/dist/js/bootstrap.bundle.min.js was not modified
+2023-08-08 18:21:26.651 -07:00 [INF] The file /lib/bootstrap/dist/css/bootstrap.min.css was not modified
+2023-08-08 18:21:26.651 -07:00 [INF] The file /css/site.css was not modified
+2023-08-08 18:21:26.651 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 304 - text/javascript 93.4180ms
+2023-08-08 18:21:26.651 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - - 304 - text/css 92.2914ms
+2023-08-08 18:21:26.651 -07:00 [INF] The file /js/site.js was not modified
+2023-08-08 18:21:26.651 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - - - 304 - text/css 54.1647ms
+2023-08-08 18:21:26.651 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Clean.Architecture.Web.styles.css - -
+2023-08-08 18:21:26.652 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 304 - text/javascript 89.8288ms
+2023-08-08 18:21:26.657 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Clean.Architecture.Web.styles.css - - - 404 - - 5.9324ms
+2023-08-08 18:21:26.697 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - -
+2023-08-08 18:21:26.697 -07:00 [INF] The file /lib/jquery/dist/jquery.min.js was not modified
+2023-08-08 18:21:26.698 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - - - 304 - text/javascript 0.8736ms
+2023-08-08 18:21:26.768 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:21:26.825 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 56.8263ms
+2023-08-08 18:21:33.869 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:57678/Identity/Account/Login application/x-www-form-urlencoded 269
+2023-08-08 18:21:33.876 -07:00 [INF] Executing endpoint '/Account/Login'
+2023-08-08 18:21:33.876 -07:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2023-08-08 18:21:34.131 -07:00 [INF] Executing handler method InteractiveGallery.Web.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2023-08-08 18:21:34.363 -07:00 [INF] Executed DbCommand (165ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2023-08-08 18:21:34.901 -07:00 [INF] Executed DbCommand (79ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2023-08-08 18:21:35.069 -07:00 [INF] Executed DbCommand (75ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2023-08-08 18:21:35.079 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-08-08 18:21:35.140 -07:00 [INF] Executed DbCommand (46ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2023-08-08 18:21:35.162 -07:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2023-08-08 18:21:35.165 -07:00 [INF] User logged in.
+2023-08-08 18:21:35.196 -07:00 [INF] Executed DbCommand (31ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2023-08-08 18:21:35.201 -07:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2023-08-08 18:21:35.223 -07:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RedirectToActionResult.
+2023-08-08 18:21:35.228 -07:00 [INF] Executing RedirectResult, redirecting to /AdminArea.
+2023-08-08 18:21:35.229 -07:00 [INF] Executed page /Account/Login in 1352.5178ms
+2023-08-08 18:21:35.229 -07:00 [INF] Executed endpoint '/Account/Login'
+2023-08-08 18:21:35.235 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AdminArea - -
+2023-08-08 18:21:35.239 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:57678/Identity/Account/Login application/x-www-form-urlencoded 269 - 302 - - 1369.9063ms
+2023-08-08 18:21:35.248 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.HomeController.Index (InteractiveGallery.Web)'
+2023-08-08 18:21:35.250 -07:00 [INF] Route matched with {area = "AdminArea", action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller InteractiveGallery.Web.Areas.AdminArea.Controllers.HomeController (InteractiveGallery.Web).
+2023-08-08 18:21:35.395 -07:00 [INF] Executing action method InteractiveGallery.Web.Areas.AdminArea.Controllers.HomeController.Index (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:21:35.397 -07:00 [INF] Executed action method InteractiveGallery.Web.Areas.AdminArea.Controllers.HomeController.Index (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.5207ms.
+2023-08-08 18:21:35.400 -07:00 [INF] Executing ViewResult, running view Index.
+2023-08-08 18:21:35.480 -07:00 [INF] Executed ViewResult - view Index executed in 81.2476ms.
+2023-08-08 18:21:35.482 -07:00 [INF] Executed action InteractiveGallery.Web.Areas.AdminArea.Controllers.HomeController.Index (InteractiveGallery.Web) in 231.9766ms
+2023-08-08 18:21:35.485 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.HomeController.Index (InteractiveGallery.Web)'
+2023-08-08 18:21:35.490 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AdminArea - - - 200 - text/html;+charset=utf-8 255.0931ms
+2023-08-08 18:21:35.548 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:21:35.548 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:21:35.553 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 5.0463ms
+2023-08-08 18:21:35.597 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 48.8297ms
+2023-08-08 18:21:37.483 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AdminArea/Galleries - -
+2023-08-08 18:21:37.494 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.Index (InteractiveGallery.Web)'
+2023-08-08 18:21:37.501 -07:00 [INF] Route matched with {area = "AdminArea", action = "Index", controller = "Galleries", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController (InteractiveGallery.Web).
+2023-08-08 18:21:37.540 -07:00 [INF] Executing action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.Index (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:21:37.766 -07:00 [INF] Executed DbCommand (119ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[id], [g].[InitiatorId], [g].[name], [g].[theme]
+FROM [Galleries] AS [g]
+2023-08-08 18:21:37.855 -07:00 [INF] Executed action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.Index (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 314.4188ms.
+2023-08-08 18:21:37.858 -07:00 [INF] Executing ViewResult, running view Index.
+2023-08-08 18:21:38.010 -07:00 [INF] Executed ViewResult - view Index executed in 153.0447ms.
+2023-08-08 18:21:38.010 -07:00 [INF] Executed action InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.Index (InteractiveGallery.Web) in 508.6897ms
+2023-08-08 18:21:38.010 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.Index (InteractiveGallery.Web)'
+2023-08-08 18:21:38.016 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AdminArea/Galleries - - - 200 - text/html;+charset=utf-8 532.5448ms
+2023-08-08 18:21:38.107 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:21:38.107 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:21:38.109 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 2.6532ms
+2023-08-08 18:21:38.121 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/big/img1.jpg - -
+2023-08-08 18:21:38.125 -07:00 [INF] The file /images/big/img1.jpg was not modified
+2023-08-08 18:21:38.125 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/big/img1.jpg - - - 304 - image/jpeg 4.7882ms
+2023-08-08 18:21:38.173 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 66.2396ms
+2023-08-08 18:21:47.958 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AdminArea/Galleries/detailsGallery - -
+2023-08-08 18:21:47.963 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:21:47.964 -07:00 [INF] Route matched with {area = "AdminArea", action = "DetailsGallery", controller = "Galleries", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DetailsGallery() on controller InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController (InteractiveGallery.Web).
+2023-08-08 18:21:48.024 -07:00 [INF] Executing action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:21:48.025 -07:00 [INF] Executed action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.3139ms.
+2023-08-08 18:21:48.040 -07:00 [INF] Executing ViewResult, running view DetailsGallery.
+2023-08-08 18:21:48.064 -07:00 [INF] Executed ViewResult - view DetailsGallery executed in 39.3983ms.
+2023-08-08 18:21:48.065 -07:00 [INF] Executed action InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) in 100.2578ms
+2023-08-08 18:21:48.065 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:21:48.068 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AdminArea/Galleries/detailsGallery - - - 200 - text/html;+charset=utf-8 109.4616ms
+2023-08-08 18:21:48.126 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:21:48.127 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/main.js - -
+2023-08-08 18:21:48.128 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 1.2141ms
+2023-08-08 18:21:48.996 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:21:49.036 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 40.2452ms
+2023-08-08 18:21:49.912 -07:00 [INF] Sending file. Request path: '/main.js'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\main.js'
+2023-08-08 18:21:49.912 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/main.js - - - 200 2592 text/javascript 1785.3355ms
+2023-08-08 18:21:50.080 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - -
+2023-08-08 18:21:50.083 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - - - 404 - - 2.9780ms
+2023-08-08 18:22:28.987 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AdminArea/Galleries/detailsGallery - -
+2023-08-08 18:22:29.005 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:22:29.005 -07:00 [INF] Route matched with {area = "AdminArea", action = "DetailsGallery", controller = "Galleries", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DetailsGallery() on controller InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController (InteractiveGallery.Web).
+2023-08-08 18:22:29.054 -07:00 [INF] Executing action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:22:29.054 -07:00 [INF] Executed action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0653ms.
+2023-08-08 18:22:29.055 -07:00 [INF] Executing ViewResult, running view DetailsGallery.
+2023-08-08 18:22:29.093 -07:00 [INF] Executed ViewResult - view DetailsGallery executed in 38.5435ms.
+2023-08-08 18:22:29.093 -07:00 [INF] Executed action InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) in 88.2262ms
+2023-08-08 18:22:29.093 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:22:29.132 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AdminArea/Galleries/detailsGallery - - - 200 - text/html;+charset=utf-8 145.9782ms
+2023-08-08 18:22:29.279 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:22:29.282 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 2.4560ms
+2023-08-08 18:22:29.386 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/main.js - -
+2023-08-08 18:22:29.390 -07:00 [INF] Sending file. Request path: '/main.js'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\main.js'
+2023-08-08 18:22:29.392 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/main.js - - - 200 2592 text/javascript 6.4374ms
+2023-08-08 18:22:31.479 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:22:31.535 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 55.6765ms
+2023-08-08 18:22:41.197 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - -
+2023-08-08 18:22:41.204 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - - - 404 - - 7.4068ms
+2023-08-08 18:22:41.355 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/favicon.ico - -
+2023-08-08 18:22:41.488 -07:00 [INF] Sending file. Request path: '/favicon.ico'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\favicon.ico'
+2023-08-08 18:22:41.488 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/favicon.ico - - - 200 5430 image/x-icon 133.0812ms
+2023-08-08 18:23:19.401 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - -
+2023-08-08 18:23:19.429 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - - - 404 - - 28.9064ms
+2023-08-08 18:23:30.971 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AdminArea/Galleries/detailsGallery - -
+2023-08-08 18:23:30.975 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:23:30.976 -07:00 [INF] Route matched with {area = "AdminArea", action = "DetailsGallery", controller = "Galleries", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DetailsGallery() on controller InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController (InteractiveGallery.Web).
+2023-08-08 18:23:31.045 -07:00 [INF] Executing action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:23:31.045 -07:00 [INF] Executed action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0413ms.
+2023-08-08 18:23:31.045 -07:00 [INF] Executing ViewResult, running view DetailsGallery.
+2023-08-08 18:23:31.637 -07:00 [INF] Executed ViewResult - view DetailsGallery executed in 592.3497ms.
+2023-08-08 18:23:31.637 -07:00 [INF] Executed action InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) in 661.1903ms
+2023-08-08 18:23:31.638 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:23:31.640 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AdminArea/Galleries/detailsGallery - - - 200 - text/html;+charset=utf-8 669.4296ms
+2023-08-08 18:23:31.684 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:23:31.684 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/main.js - -
+2023-08-08 18:23:31.693 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 9.5579ms
+2023-08-08 18:23:31.707 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:23:31.766 -07:00 [INF] The file /main.js was not modified
+2023-08-08 18:23:31.766 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/main.js - - - 304 - text/javascript 81.9511ms
+2023-08-08 18:23:31.947 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 239.6084ms
+2023-08-08 18:24:25.729 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - -
+2023-08-08 18:24:25.734 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - - - 404 - - 4.8536ms
+2023-08-08 18:25:40.713 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AdminArea/Galleries/detailsGallery - -
+2023-08-08 18:25:40.722 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:25:40.722 -07:00 [INF] Route matched with {area = "AdminArea", action = "DetailsGallery", controller = "Galleries", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DetailsGallery() on controller InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController (InteractiveGallery.Web).
+2023-08-08 18:25:40.770 -07:00 [INF] Executing action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:25:40.770 -07:00 [INF] Executed action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0519ms.
+2023-08-08 18:25:40.771 -07:00 [INF] Executing ViewResult, running view DetailsGallery.
+2023-08-08 18:25:40.845 -07:00 [INF] Executed ViewResult - view DetailsGallery executed in 74.4594ms.
+2023-08-08 18:25:40.845 -07:00 [INF] Executed action InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) in 122.8743ms
+2023-08-08 18:25:40.845 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:25:40.854 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AdminArea/Galleries/detailsGallery - - - 200 - text/html;+charset=utf-8 140.4819ms
+2023-08-08 18:25:40.907 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/main.js - -
+2023-08-08 18:25:40.909 -07:00 [INF] The file /main.js was not modified
+2023-08-08 18:25:40.910 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/main.js - - - 304 - text/javascript 1.8567ms
+2023-08-08 18:25:40.910 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:25:41.020 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:25:41.024 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 3.2792ms
+2023-08-08 18:25:41.126 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 215.9441ms
+2023-08-08 18:25:44.423 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - -
+2023-08-08 18:25:44.427 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - - - 404 - - 3.9163ms
+2023-08-08 18:26:00.188 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AdminArea/Galleries/detailsGallery - -
+2023-08-08 18:26:00.191 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:26:00.193 -07:00 [INF] Route matched with {area = "AdminArea", action = "DetailsGallery", controller = "Galleries", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DetailsGallery() on controller InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController (InteractiveGallery.Web).
+2023-08-08 18:26:00.669 -07:00 [INF] Executing action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:26:00.669 -07:00 [INF] Executed action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0522ms.
+2023-08-08 18:26:00.670 -07:00 [INF] Executing ViewResult, running view DetailsGallery.
+2023-08-08 18:26:00.698 -07:00 [INF] Executed ViewResult - view DetailsGallery executed in 28.7395ms.
+2023-08-08 18:26:00.698 -07:00 [INF] Executed action InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) in 505.4651ms
+2023-08-08 18:26:00.708 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:26:00.712 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AdminArea/Galleries/detailsGallery - - - 200 - text/html;+charset=utf-8 523.8766ms
+2023-08-08 18:26:00.720 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:26:00.721 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 1.4502ms
+2023-08-08 18:26:00.723 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:26:00.868 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 145.5091ms
+2023-08-08 18:26:01.853 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - -
+2023-08-08 18:26:01.856 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - - - 404 - - 3.3382ms
+2023-08-08 18:32:02.826 -07:00 [INF] Registered 1 endpoints in 366 milliseconds.
+2023-08-08 18:32:03.092 -07:00 [INF] User profile is available. Using 'C:\Users\diana\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-08-08 18:32:06.502 -07:00 [INF] Executed DbCommand (46ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-08-08 18:32:07.867 -07:00 [INF] Executed DbCommand (1,340ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2023-08-08 18:32:08.508 -07:00 [INF] Executed DbCommand (115ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-08-08 18:32:08.629 -07:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-08-08 18:32:08.817 -07:00 [INF] Executed DbCommand (151ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2023-08-08 18:32:09.037 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-08-08 18:32:09.037 -07:00 [INF] Hosting environment: Development
+2023-08-08 18:32:09.037 -07:00 [INF] Content root path: D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web
+2023-08-08 18:32:09.073 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2023-08-08 18:32:09.242 -07:00 [WRN] Failed to determine the https port for redirect.
+2023-08-08 18:32:09.280 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web)'
+2023-08-08 18:32:09.296 -07:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller InteractiveGallery.Web.Controllers.HomeController (InteractiveGallery.Web).
+2023-08-08 18:32:09.425 -07:00 [INF] Executing action method InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:32:09.437 -07:00 [INF] Executed action method InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 2.8781ms.
+2023-08-08 18:32:09.457 -07:00 [INF] Executing ViewResult, running view Index.
+2023-08-08 18:32:09.765 -07:00 [INF] Executed ViewResult - view Index executed in 313.5048ms.
+2023-08-08 18:32:09.772 -07:00 [INF] Executed action InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web) in 474.1227ms
+2023-08-08 18:32:09.773 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web)'
+2023-08-08 18:32:09.834 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 762.8824ms
+2023-08-08 18:32:09.989 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/css/style.css - -
+2023-08-08 18:32:09.989 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/plugins/common/common.min.js - -
+2023-08-08 18:32:09.989 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/logo-text.png - -
+2023-08-08 18:32:09.989 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/logo.png - -
+2023-08-08 18:32:10.542 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/avatar/1.jpg - -
+2023-08-08 18:32:10.598 -07:00 [INF] Sending file. Request path: '/images/logo-text.png'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\Images\logo-text.png'
+2023-08-08 18:32:10.599 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/logo-text.png - - - 200 1517 image/png 610.3109ms
+2023-08-08 18:32:10.601 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/logo-compact.png - -
+2023-08-08 18:32:10.626 -07:00 [INF] Sending file. Request path: '/images/logo.png'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\Images\logo.png'
+2023-08-08 18:32:10.627 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/logo.png - - - 200 1138 image/png 637.6159ms
+2023-08-08 18:32:10.628 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/avatar/2.jpg - -
+2023-08-08 18:32:10.683 -07:00 [INF] Sending file. Request path: '/images/logo-compact.png'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\Images\logo-compact.png'
+2023-08-08 18:32:10.683 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/logo-compact.png - - - 200 1525 image/png 82.1489ms
+2023-08-08 18:32:10.684 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/custom.min.js - -
+2023-08-08 18:32:11.171 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/settings.js - -
+2023-08-08 18:32:11.251 -07:00 [INF] Sending file. Request path: '/images/avatar/1.jpg'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\Images\avatar\1.jpg'
+2023-08-08 18:32:11.252 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/avatar/1.jpg - - - 200 1184 image/jpeg 709.8975ms
+2023-08-08 18:32:11.273 -07:00 [INF] Sending file. Request path: '/images/avatar/2.jpg'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\Images\avatar\2.jpg'
+2023-08-08 18:32:11.274 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/avatar/2.jpg - - - 200 1743 image/jpeg 646.5053ms
+2023-08-08 18:32:11.275 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/gleek.js - -
+2023-08-08 18:32:11.324 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/styleSwitcher.js - -
+2023-08-08 18:32:11.656 -07:00 [INF] Sending file. Request path: '/js/gleek.js'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\js\gleek.js'
+2023-08-08 18:32:11.658 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/gleek.js - - - 200 1108 text/javascript 382.5506ms
+2023-08-08 18:32:11.692 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:32:11.697 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 5.1308ms
+2023-08-08 18:32:11.700 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/avatar/3.jpg - -
+2023-08-08 18:32:11.796 -07:00 [INF] Sending file. Request path: '/images/avatar/3.jpg'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\Images\avatar\3.jpg'
+2023-08-08 18:32:11.797 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/avatar/3.jpg - - - 200 1316 image/jpeg 97.2072ms
+2023-08-08 18:32:11.844 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/avatar/4.jpg - -
+2023-08-08 18:32:12.120 -07:00 [INF] Sending file. Request path: '/images/avatar/4.jpg'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\Images\avatar\4.jpg'
+2023-08-08 18:32:12.120 -07:00 [INF] Sending file. Request path: '/js/styleSwitcher.js'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\js\styleSwitcher.js'
+2023-08-08 18:32:12.121 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/avatar/4.jpg - - - 200 1840 image/jpeg 276.3909ms
+2023-08-08 18:32:12.121 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/styleSwitcher.js - - - 200 3154 text/javascript 796.7247ms
+2023-08-08 18:32:12.123 -07:00 [INF] Sending file. Request path: '/js/settings.js'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\js\settings.js'
+2023-08-08 18:32:12.124 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/settings.js - - - 200 8433 text/javascript 953.2342ms
+2023-08-08 18:32:12.242 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/user/1.png - -
+2023-08-08 18:32:12.268 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:32:12.285 -07:00 [INF] Sending file. Request path: '/js/custom.min.js'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\js\custom.min.js'
+2023-08-08 18:32:12.286 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/custom.min.js - - - 200 2043 text/javascript 1601.6774ms
+2023-08-08 18:32:12.339 -07:00 [INF] Sending file. Request path: '/images/user/1.png'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\Images\user\1.png'
+2023-08-08 18:32:12.340 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/user/1.png - - - 200 5283 image/png 98.1151ms
+2023-08-08 18:32:12.358 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 89.8701ms
+2023-08-08 18:32:12.369 -07:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\css\style.css'
+2023-08-08 18:32:12.382 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/css/style.css - - - 200 442970 text/css 2392.8957ms
+2023-08-08 18:32:12.431 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/font-awesome/css/font-awesome.min.css - -
+2023-08-08 18:32:12.432 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/simple-line-icons/css/simple-line-icons.css - -
+2023-08-08 18:32:12.433 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/cryptocoins/css/cryptocoins.css - -
+2023-08-08 18:32:12.433 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/cryptocoins/css/cryptocoins-colors.css - -
+2023-08-08 18:32:12.574 -07:00 [INF] Sending file. Request path: '/icons/simple-line-icons/css/simple-line-icons.css'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\icons\simple-line-icons\css\simple-line-icons.css'
+2023-08-08 18:32:12.576 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/simple-line-icons/css/simple-line-icons.css - - - 200 13337 text/css 142.8619ms
+2023-08-08 18:32:12.578 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/weather-icons/css/weather-icons.min.css - -
+2023-08-08 18:32:12.585 -07:00 [INF] Sending file. Request path: '/icons/cryptocoins/css/cryptocoins.css'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\icons\cryptocoins\css\cryptocoins.css'
+2023-08-08 18:32:12.586 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/cryptocoins/css/cryptocoins.css - - - 200 14040 text/css 153.0261ms
+2023-08-08 18:32:12.586 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/linea-icons/linea.css - -
+2023-08-08 18:32:12.656 -07:00 [INF] Sending file. Request path: '/icons/font-awesome/css/font-awesome.min.css'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\icons\font-awesome\css\font-awesome.min.css'
+2023-08-08 18:32:12.658 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/ionicons/css/ionicons.css - -
+2023-08-08 18:32:12.667 -07:00 [INF] Sending file. Request path: '/icons/cryptocoins/css/cryptocoins-colors.css'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\icons\cryptocoins\css\cryptocoins-colors.css'
+2023-08-08 18:32:12.668 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/cryptocoins/css/cryptocoins-colors.css - - - 200 3787 text/css 234.4162ms
+2023-08-08 18:32:12.668 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/font-awesome/css/font-awesome.min.css - - - 200 31028 text/css 236.9299ms
+2023-08-08 18:32:12.668 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/themify-icons/themify-icons.css - -
+2023-08-08 18:32:12.721 -07:00 [INF] Sending file. Request path: '/icons/weather-icons/css/weather-icons.min.css'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\icons\weather-icons\css\weather-icons.min.css'
+2023-08-08 18:32:12.722 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/weather-icons/css/weather-icons.min.css - - - 200 23145 text/css 144.3494ms
+2023-08-08 18:32:12.722 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/flag-icon-css/flag-icon.min.css - -
+2023-08-08 18:32:12.754 -07:00 [INF] Sending file. Request path: '/icons/ionicons/css/ionicons.css'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\icons\ionicons\css\ionicons.css'
+2023-08-08 18:32:12.760 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/material-design-iconic-font/materialdesignicons.min.css - -
+2023-08-08 18:32:12.772 -07:00 [INF] Sending file. Request path: '/icons/themify-icons/themify-icons.css'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\icons\themify-icons\themify-icons.css'
+2023-08-08 18:32:12.773 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/themify-icons/themify-icons.css - - - 200 17512 text/css 104.4731ms
+2023-08-08 18:32:12.773 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/ionicons/css/ionicons.css - - - 200 63155 text/css 115.8885ms
+2023-08-08 18:32:12.774 -07:00 [INF] Sending file. Request path: '/icons/linea-icons/linea.css'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\icons\linea-icons\linea.css'
+2023-08-08 18:32:12.778 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/icons/pe-icon-set-weather/css/pe-icon-set-weather.min.css - -
+2023-08-08 18:32:12.858 -07:00 [INF] Sending file. Request path: '/icons/flag-icon-css/flag-icon.min.css'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\icons\flag-icon-css\flag-icon.min.css'
+2023-08-08 18:32:12.861 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/flag-icon-css/flag-icon.min.css - - - 200 12601 text/css 136.3217ms
+2023-08-08 18:32:12.862 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/linea-icons/linea.css - - - 200 51953 text/css 275.3906ms
+2023-08-08 18:32:12.864 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/plugins/animate/animate.min.css - -
+2023-08-08 18:32:13.033 -07:00 [INF] Sending file. Request path: '/icons/pe-icon-set-weather/css/pe-icon-set-weather.min.css'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\icons\pe-icon-set-weather\css\pe-icon-set-weather.min.css'
+2023-08-08 18:32:13.034 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/pe-icon-set-weather/css/pe-icon-set-weather.min.css - - - 200 10129 text/css 255.4621ms
+2023-08-08 18:32:13.034 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/plugins/metismenu/css/metisMenu.min.css - -
+2023-08-08 18:32:13.089 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/plugins/bootstrap-select/dist/css/bootstrap-select.min.css - -
+2023-08-08 18:32:13.112 -07:00 [INF] Sending file. Request path: '/plugins/metismenu/css/metisMenu.min.css'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\plugins\metismenu\css\metisMenu.min.css'
+2023-08-08 18:32:13.113 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/plugins/metismenu/css/metisMenu.min.css - - - 200 2188 text/css 78.3651ms
+2023-08-08 18:32:13.114 -07:00 [INF] Sending file. Request path: '/plugins/animate/animate.min.css'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\plugins\animate\animate.min.css'
+2023-08-08 18:32:13.117 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/plugins/animate/animate.min.css - - - 200 57997 text/css 252.7174ms
+2023-08-08 18:32:13.307 -07:00 [INF] Sending file. Request path: '/plugins/bootstrap-select/dist/css/bootstrap-select.min.css'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\plugins\bootstrap-select\dist\css\bootstrap-select.min.css'
+2023-08-08 18:32:13.314 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/plugins/bootstrap-select/dist/css/bootstrap-select.min.css - - - 200 9870 text/css 224.6294ms
+2023-08-08 18:32:13.320 -07:00 [INF] Sending file. Request path: '/icons/material-design-iconic-font/materialdesignicons.min.css'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\icons\material-design-iconic-font\materialdesignicons.min.css'
+2023-08-08 18:32:13.328 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/icons/material-design-iconic-font/materialdesignicons.min.css - - - 200 141747 text/css 568.4139ms
+2023-08-08 18:32:13.360 -07:00 [INF] Sending file. Request path: '/plugins/common/common.min.js'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\plugins\common\common.min.js'
+2023-08-08 18:32:13.370 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/plugins/common/common.min.js - - - 200 212781 text/javascript 3380.8489ms
+2023-08-08 18:35:03.640 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2023-08-08 18:35:03.657 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web)'
+2023-08-08 18:35:03.658 -07:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller InteractiveGallery.Web.Controllers.HomeController (InteractiveGallery.Web).
+2023-08-08 18:35:03.723 -07:00 [INF] Executing action method InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:35:03.723 -07:00 [INF] Executed action method InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0904ms.
+2023-08-08 18:35:03.737 -07:00 [INF] Executing ViewResult, running view Index.
+2023-08-08 18:35:03.825 -07:00 [INF] Executed ViewResult - view Index executed in 100.2433ms.
+2023-08-08 18:35:03.829 -07:00 [INF] Executed action InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web) in 170.3704ms
+2023-08-08 18:35:03.829 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web)'
+2023-08-08 18:35:03.836 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 195.9215ms
+2023-08-08 18:35:03.872 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:35:03.875 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:35:03.876 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 3.3455ms
+2023-08-08 18:35:03.952 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 78.1773ms
+2023-08-08 18:36:02.298 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/identity/account/login - -
+2023-08-08 18:36:02.330 -07:00 [INF] Executing endpoint '/Account/Login'
+2023-08-08 18:36:02.403 -07:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2023-08-08 18:36:02.446 -07:00 [INF] Executing handler method InteractiveGallery.Web.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2023-08-08 18:36:02.473 -07:00 [INF] AuthenticationScheme: Identity.External signed out.
+2023-08-08 18:36:02.476 -07:00 [INF] Executed handler method OnGetAsync, returned result .
+2023-08-08 18:36:02.481 -07:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2023-08-08 18:36:02.482 -07:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2023-08-08 18:36:02.710 -07:00 [INF] Executed page /Account/Login in 306.7117ms
+2023-08-08 18:36:02.710 -07:00 [INF] Executed endpoint '/Account/Login'
+2023-08-08 18:36:02.746 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - -
+2023-08-08 18:36:02.746 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/identity/account/login - - - 200 - text/html;+charset=utf-8 447.8964ms
+2023-08-08 18:36:02.802 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - -
+2023-08-08 18:36:02.805 -07:00 [INF] Sending file. Request path: '/css/site.css'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\css\site.css'
+2023-08-08 18:36:02.806 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - -
+2023-08-08 18:36:02.806 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - - 200 194 text/css 4.1541ms
+2023-08-08 18:36:02.807 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2023-08-08 18:36:02.807 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2023-08-08 18:36:02.807 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Clean.Architecture.Web.styles.css - -
+2023-08-08 18:36:02.812 -07:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\js\site.js'
+2023-08-08 18:36:02.813 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 200 230 text/javascript 5.6238ms
+2023-08-08 18:36:02.814 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Identity/lib/jquery-validation/dist/jquery.validate.js - -
+2023-08-08 18:36:02.819 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Clean.Architecture.Web.styles.css - - - 404 - - 11.1165ms
+2023-08-08 18:36:02.863 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Identity/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js - -
+2023-08-08 18:36:03.171 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:36:03.172 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 1.1773ms
+2023-08-08 18:36:03.178 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:36:03.219 -07:00 [INF] Sending file. Request path: '/Identity/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js'. Physical path: 'C:\Users\diana\.nuget\packages\microsoft.aspnetcore.identity.ui\7.0.9\staticwebassets\V5\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js'
+2023-08-08 18:36:03.223 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Identity/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js - - - 200 19385 text/javascript 360.1054ms
+2023-08-08 18:36:03.229 -07:00 [INF] Sending file. Request path: '/Identity/lib/jquery-validation/dist/jquery.validate.js'. Physical path: 'C:\Users\diana\.nuget\packages\microsoft.aspnetcore.identity.ui\7.0.9\staticwebassets\V5\lib\jquery-validation\dist\jquery.validate.js'
+2023-08-08 18:36:03.235 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Identity/lib/jquery-validation/dist/jquery.validate.js - - - 200 48676 text/javascript 420.4259ms
+2023-08-08 18:36:03.246 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 67.9590ms
+2023-08-08 18:36:03.354 -07:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+2023-08-08 18:36:03.358 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 200 78474 text/javascript 550.8758ms
+2023-08-08 18:36:03.499 -07:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+2023-08-08 18:36:03.504 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - - - 200 162726 text/css 758.3884ms
+2023-08-08 18:36:03.514 -07:00 [INF] Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\lib\jquery\dist\jquery.min.js'
+2023-08-08 18:36:03.518 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - - - 200 89478 text/javascript 712.0869ms
+2023-08-08 18:36:03.667 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/favicon.ico - -
+2023-08-08 18:36:03.670 -07:00 [INF] Sending file. Request path: '/favicon.ico'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\favicon.ico'
+2023-08-08 18:36:03.675 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/favicon.ico - - - 200 5430 image/x-icon 8.1953ms
+2023-08-08 18:36:55.408 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:57678/identity/account/login application/x-www-form-urlencoded 297
+2023-08-08 18:36:55.427 -07:00 [INF] Executing endpoint '/Account/Login'
+2023-08-08 18:36:55.427 -07:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2023-08-08 18:36:55.482 -07:00 [INF] Executing handler method InteractiveGallery.Web.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2023-08-08 18:36:55.656 -07:00 [INF] Executed DbCommand (102ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2023-08-08 18:36:55.813 -07:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2023-08-08 18:36:55.835 -07:00 [INF] Executed page /Account/Login in 407.6932ms
+2023-08-08 18:36:55.835 -07:00 [INF] Executed endpoint '/Account/Login'
+2023-08-08 18:36:55.873 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:57678/identity/account/login application/x-www-form-urlencoded 297 - 200 - text/html;+charset=utf-8 465.3680ms
+2023-08-08 18:36:55.890 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Clean.Architecture.Web.styles.css - -
+2023-08-08 18:36:55.894 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Clean.Architecture.Web.styles.css - - - 404 - - 3.4245ms
+2023-08-08 18:36:55.935 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:36:55.946 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 10.4990ms
+2023-08-08 18:36:55.947 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:36:56.023 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 76.8882ms
+2023-08-08 18:37:00.769 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:57678/identity/account/login application/x-www-form-urlencoded 297
+2023-08-08 18:37:00.771 -07:00 [INF] Executing endpoint '/Account/Login'
+2023-08-08 18:37:00.771 -07:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2023-08-08 18:37:00.783 -07:00 [INF] Executing handler method InteractiveGallery.Web.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2023-08-08 18:37:00.894 -07:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2023-08-08 18:37:01.066 -07:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2023-08-08 18:37:01.089 -07:00 [INF] Executed page /Account/Login in 317.0822ms
+2023-08-08 18:37:01.089 -07:00 [INF] Executed endpoint '/Account/Login'
+2023-08-08 18:37:01.106 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:57678/identity/account/login application/x-www-form-urlencoded 297 - 200 - text/html;+charset=utf-8 336.8347ms
+2023-08-08 18:37:01.109 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Clean.Architecture.Web.styles.css - -
+2023-08-08 18:37:01.113 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Clean.Architecture.Web.styles.css - - - 404 - - 3.7232ms
+2023-08-08 18:37:01.118 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:37:01.122 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:37:01.125 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 5.7461ms
+2023-08-08 18:37:01.173 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 54.6662ms
+2023-08-08 18:37:16.358 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:57678/identity/account/login application/x-www-form-urlencoded 291
+2023-08-08 18:37:16.360 -07:00 [INF] Executing endpoint '/Account/Login'
+2023-08-08 18:37:16.360 -07:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2023-08-08 18:37:16.364 -07:00 [INF] Executing handler method InteractiveGallery.Web.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2023-08-08 18:37:16.368 -07:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2023-08-08 18:37:16.623 -07:00 [INF] Executed DbCommand (32ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2023-08-08 18:37:16.692 -07:00 [INF] Executed DbCommand (23ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2023-08-08 18:37:16.709 -07:00 [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-08-08 18:37:16.724 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2023-08-08 18:37:16.741 -07:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2023-08-08 18:37:16.745 -07:00 [INF] User logged in.
+2023-08-08 18:37:16.750 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2023-08-08 18:37:16.755 -07:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2023-08-08 18:37:16.757 -07:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RedirectToActionResult.
+2023-08-08 18:37:16.759 -07:00 [INF] Executing RedirectResult, redirecting to /AdminArea.
+2023-08-08 18:37:16.761 -07:00 [INF] Executed page /Account/Login in 399.9366ms
+2023-08-08 18:37:16.761 -07:00 [INF] Executed endpoint '/Account/Login'
+2023-08-08 18:37:16.763 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:57678/identity/account/login application/x-www-form-urlencoded 291 - 302 - - 404.8879ms
+2023-08-08 18:37:16.766 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AdminArea - -
+2023-08-08 18:37:16.776 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.HomeController.Index (InteractiveGallery.Web)'
+2023-08-08 18:37:16.780 -07:00 [INF] Route matched with {area = "AdminArea", action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller InteractiveGallery.Web.Areas.AdminArea.Controllers.HomeController (InteractiveGallery.Web).
+2023-08-08 18:37:16.821 -07:00 [INF] Executing action method InteractiveGallery.Web.Areas.AdminArea.Controllers.HomeController.Index (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:37:16.821 -07:00 [INF] Executed action method InteractiveGallery.Web.Areas.AdminArea.Controllers.HomeController.Index (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.2966ms.
+2023-08-08 18:37:16.823 -07:00 [INF] Executing ViewResult, running view Index.
+2023-08-08 18:37:16.864 -07:00 [INF] Executed ViewResult - view Index executed in 42.0283ms.
+2023-08-08 18:37:16.864 -07:00 [INF] Executed action InteractiveGallery.Web.Areas.AdminArea.Controllers.HomeController.Index (InteractiveGallery.Web) in 83.4113ms
+2023-08-08 18:37:16.865 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.HomeController.Index (InteractiveGallery.Web)'
+2023-08-08 18:37:16.880 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AdminArea - - - 200 - text/html;+charset=utf-8 113.5109ms
+2023-08-08 18:37:17.006 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:37:17.007 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 1.4940ms
+2023-08-08 18:37:17.007 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:37:17.063 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 56.1815ms
+2023-08-08 18:37:36.458 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AdminArea/galleries - -
+2023-08-08 18:37:36.478 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.Index (InteractiveGallery.Web)'
+2023-08-08 18:37:36.486 -07:00 [INF] Route matched with {area = "AdminArea", action = "Index", controller = "Galleries", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController (InteractiveGallery.Web).
+2023-08-08 18:37:36.528 -07:00 [INF] Executing action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.Index (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:37:36.581 -07:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[id], [g].[InitiatorId], [g].[name], [g].[theme]
+FROM [Galleries] AS [g]
+2023-08-08 18:37:36.619 -07:00 [INF] Executed action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.Index (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 90.5115ms.
+2023-08-08 18:37:36.631 -07:00 [INF] Executing ViewResult, running view Index.
+2023-08-08 18:37:36.705 -07:00 [INF] Executed ViewResult - view Index executed in 75.0333ms.
+2023-08-08 18:37:36.705 -07:00 [INF] Executed action InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.Index (InteractiveGallery.Web) in 219.4965ms
+2023-08-08 18:37:36.706 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.Index (InteractiveGallery.Web)'
+2023-08-08 18:37:36.711 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AdminArea/galleries - - - 200 - text/html;+charset=utf-8 253.1284ms
+2023-08-08 18:37:36.718 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/big/img1.jpg - -
+2023-08-08 18:37:36.767 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:37:36.769 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:37:36.769 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 1.7599ms
+2023-08-08 18:37:36.830 -07:00 [INF] Sending file. Request path: '/images/big/img1.jpg'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\Images\big\img1.jpg'
+2023-08-08 18:37:36.832 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/big/img1.jpg - - - 200 85662 image/jpeg 114.5435ms
+2023-08-08 18:37:36.853 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 84.2505ms
+2023-08-08 18:37:49.868 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AdminArea/galleries/detailsgallery - -
+2023-08-08 18:37:49.875 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:37:49.877 -07:00 [INF] Route matched with {area = "AdminArea", action = "DetailsGallery", controller = "Galleries", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DetailsGallery() on controller InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController (InteractiveGallery.Web).
+2023-08-08 18:37:49.912 -07:00 [INF] Executing action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:37:49.912 -07:00 [INF] Executed action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.2734ms.
+2023-08-08 18:37:49.914 -07:00 [INF] Executing ViewResult, running view DetailsGallery.
+2023-08-08 18:37:49.930 -07:00 [INF] Executed ViewResult - view DetailsGallery executed in 17.3993ms.
+2023-08-08 18:37:49.930 -07:00 [INF] Executed action InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) in 52.9803ms
+2023-08-08 18:37:49.933 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:37:49.936 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AdminArea/galleries/detailsgallery - - - 200 - text/html;+charset=utf-8 68.1047ms
+2023-08-08 18:37:50.304 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/main.js - -
+2023-08-08 18:37:50.304 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:37:50.305 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 1.2658ms
+2023-08-08 18:37:50.312 -07:00 [INF] Sending file. Request path: '/main.js'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\main.js'
+2023-08-08 18:37:50.313 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/main.js - - - 200 2592 text/javascript 8.9005ms
+2023-08-08 18:38:28.640 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AdminArea/galleries/detailsgallery - -
+2023-08-08 18:38:28.645 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:38:28.646 -07:00 [INF] Route matched with {area = "AdminArea", action = "DetailsGallery", controller = "Galleries", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DetailsGallery() on controller InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController (InteractiveGallery.Web).
+2023-08-08 18:38:28.695 -07:00 [INF] Executing action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:38:28.695 -07:00 [INF] Executed action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0365ms.
+2023-08-08 18:38:28.695 -07:00 [INF] Executing ViewResult, running view DetailsGallery.
+2023-08-08 18:38:28.752 -07:00 [INF] Executed ViewResult - view DetailsGallery executed in 56.7804ms.
+2023-08-08 18:38:28.752 -07:00 [INF] Executed action InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) in 106.5904ms
+2023-08-08 18:38:28.753 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:38:28.755 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AdminArea/galleries/detailsgallery - - - 200 - text/html;+charset=utf-8 114.1872ms
+2023-08-08 18:38:28.785 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:38:28.791 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 6.3695ms
+2023-08-08 18:38:31.630 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:38:31.693 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 62.8496ms
+2023-08-08 18:38:35.952 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - -
+2023-08-08 18:38:35.957 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - - - 404 - - 4.9338ms
+2023-08-08 18:40:40.256 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - -
+2023-08-08 18:40:40.260 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - - - 404 - - 3.9491ms
+2023-08-08 18:40:55.030 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:40:55.033 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 3.5765ms
+2023-08-08 18:41:03.173 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - -
+2023-08-08 18:41:03.177 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - - - 404 - - 4.8377ms
+2023-08-08 18:41:04.025 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - -
+2023-08-08 18:41:04.035 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - - - 404 - - 10.1290ms
+2023-08-08 18:41:27.636 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AdminArea/galleries/detailsgallery - -
+2023-08-08 18:41:27.665 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:41:27.665 -07:00 [INF] Route matched with {area = "AdminArea", action = "DetailsGallery", controller = "Galleries", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DetailsGallery() on controller InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController (InteractiveGallery.Web).
+2023-08-08 18:41:27.699 -07:00 [INF] Executing action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:41:27.699 -07:00 [INF] Executed action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0427ms.
+2023-08-08 18:41:27.699 -07:00 [INF] Executing ViewResult, running view DetailsGallery.
+2023-08-08 18:41:27.774 -07:00 [INF] Executed ViewResult - view DetailsGallery executed in 74.2047ms.
+2023-08-08 18:41:27.777 -07:00 [INF] Executed action InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) in 111.1467ms
+2023-08-08 18:41:27.777 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:41:27.779 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AdminArea/galleries/detailsgallery - - - 200 - text/html;+charset=utf-8 142.7213ms
+2023-08-08 18:41:27.799 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/main.js - -
+2023-08-08 18:41:27.799 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:41:27.801 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 2.0412ms
+2023-08-08 18:41:27.813 -07:00 [INF] Sending file. Request path: '/main.js'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\main.js'
+2023-08-08 18:41:27.815 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/main.js - - - 200 2592 text/javascript 16.1384ms
+2023-08-08 18:41:29.212 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:41:29.284 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 72.7133ms
+2023-08-08 18:41:37.881 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - -
+2023-08-08 18:41:37.887 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - - - 404 - - 5.7482ms
+2023-08-08 18:43:55.767 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AdminArea/galleries/detailsgallery - -
+2023-08-08 18:43:55.771 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:43:55.771 -07:00 [INF] Route matched with {area = "AdminArea", action = "DetailsGallery", controller = "Galleries", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DetailsGallery() on controller InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController (InteractiveGallery.Web).
+2023-08-08 18:43:55.818 -07:00 [INF] Executing action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:43:55.818 -07:00 [INF] Executed action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0402ms.
+2023-08-08 18:43:55.819 -07:00 [INF] Executing ViewResult, running view DetailsGallery.
+2023-08-08 18:43:55.912 -07:00 [INF] Executed ViewResult - view DetailsGallery executed in 93.0247ms.
+2023-08-08 18:43:55.913 -07:00 [INF] Executed action InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) in 141.6206ms
+2023-08-08 18:43:55.913 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:43:55.924 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AdminArea/galleries/detailsgallery - - - 200 - text/html;+charset=utf-8 157.4062ms
+2023-08-08 18:43:55.977 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/main.js - -
+2023-08-08 18:43:55.980 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:43:55.995 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 15.5048ms
+2023-08-08 18:43:56.024 -07:00 [INF] Sending file. Request path: '/main.js'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\main.js'
+2023-08-08 18:43:56.024 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/main.js - - - 200 2592 text/javascript 46.8041ms
+2023-08-08 18:43:59.116 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:43:59.230 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 113.5008ms
+2023-08-08 18:44:33.866 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - -
+2023-08-08 18:44:33.886 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/model.REVOLVER.glb - - - 404 - - 20.3116ms
+2023-08-08 18:45:34.082 -07:00 [INF] Registered 1 endpoints in 517 milliseconds.
+2023-08-08 18:45:34.408 -07:00 [INF] User profile is available. Using 'C:\Users\diana\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-08-08 18:45:38.068 -07:00 [INF] Executed DbCommand (47ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-08-08 18:45:38.711 -07:00 [INF] Executed DbCommand (616ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2023-08-08 18:45:39.508 -07:00 [INF] Executed DbCommand (79ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-08-08 18:45:39.625 -07:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-08-08 18:45:39.677 -07:00 [INF] Executed DbCommand (8ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2023-08-08 18:45:39.958 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-08-08 18:45:39.959 -07:00 [INF] Hosting environment: Development
+2023-08-08 18:45:39.959 -07:00 [INF] Content root path: D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web
+2023-08-08 18:45:40.016 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2023-08-08 18:45:40.179 -07:00 [WRN] Failed to determine the https port for redirect.
+2023-08-08 18:45:40.236 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web)'
+2023-08-08 18:45:40.252 -07:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller InteractiveGallery.Web.Controllers.HomeController (InteractiveGallery.Web).
+2023-08-08 18:45:40.377 -07:00 [INF] Executing action method InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:45:40.384 -07:00 [INF] Executed action method InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 1.5051ms.
+2023-08-08 18:45:40.809 -07:00 [INF] Executing ViewResult, running view Index.
+2023-08-08 18:45:41.437 -07:00 [INF] Executed ViewResult - view Index executed in 1043.2201ms.
+2023-08-08 18:45:41.444 -07:00 [INF] Executed action InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web) in 1190.8094ms
+2023-08-08 18:45:41.445 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web)'
+2023-08-08 18:45:41.599 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:45:41.642 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 33.7097ms
+2023-08-08 18:45:41.646 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 1636.2282ms
+2023-08-08 18:45:41.776 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:45:41.886 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 109.7891ms
+2023-08-08 18:45:52.369 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2023-08-08 18:45:52.383 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web)'
+2023-08-08 18:45:52.388 -07:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller InteractiveGallery.Web.Controllers.HomeController (InteractiveGallery.Web).
+2023-08-08 18:45:52.422 -07:00 [INF] Executing action method InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:45:52.423 -07:00 [INF] Executed action method InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.083ms.
+2023-08-08 18:45:52.429 -07:00 [INF] Executing ViewResult, running view Index.
+2023-08-08 18:45:52.460 -07:00 [INF] Executed ViewResult - view Index executed in 35.3073ms.
+2023-08-08 18:45:52.462 -07:00 [INF] Executed action InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web) in 73.739ms
+2023-08-08 18:45:52.462 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Controllers.HomeController.Index (InteractiveGallery.Web)'
+2023-08-08 18:45:52.473 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 102.9280ms
+2023-08-08 18:45:52.476 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:45:52.476 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:45:52.482 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 5.5774ms
+2023-08-08 18:45:52.539 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 62.7308ms
+2023-08-08 18:45:53.033 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/images/favicon.png - -
+2023-08-08 18:45:53.049 -07:00 [INF] The file /images/favicon.png was not modified
+2023-08-08 18:45:53.051 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/images/favicon.png - - - 304 - image/png 18.1731ms
+2023-08-08 18:45:53.283 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Identity/Account/Login - -
+2023-08-08 18:45:53.292 -07:00 [INF] Executing endpoint '/Account/Login'
+2023-08-08 18:45:53.399 -07:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2023-08-08 18:45:53.434 -07:00 [INF] Executing handler method InteractiveGallery.Web.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2023-08-08 18:45:53.745 -07:00 [INF] AuthenticationScheme: Identity.External signed out.
+2023-08-08 18:45:53.749 -07:00 [INF] Executed handler method OnGetAsync, returned result .
+2023-08-08 18:45:53.753 -07:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2023-08-08 18:45:53.754 -07:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2023-08-08 18:45:54.252 -07:00 [INF] Executed page /Account/Login in 852.1236ms
+2023-08-08 18:45:54.253 -07:00 [INF] Executed endpoint '/Account/Login'
+2023-08-08 18:45:54.260 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Identity/Account/Login - - - 200 - text/html;+charset=utf-8 977.1527ms
+2023-08-08 18:45:54.272 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Clean.Architecture.Web.styles.css - -
+2023-08-08 18:45:54.287 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:45:54.289 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 2.0228ms
+2023-08-08 18:45:54.292 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:45:54.301 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Clean.Architecture.Web.styles.css - - - 404 - - 28.0076ms
+2023-08-08 18:45:54.344 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 51.8581ms
+2023-08-08 18:45:55.418 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:57678/Identity/Account/Login application/x-www-form-urlencoded 312
+2023-08-08 18:45:55.431 -07:00 [INF] Executing endpoint '/Account/Login'
+2023-08-08 18:45:55.432 -07:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2023-08-08 18:45:55.502 -07:00 [INF] Executing handler method InteractiveGallery.Web.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2023-08-08 18:45:55.556 -07:00 [INF] Executed DbCommand (6ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2023-08-08 18:45:55.856 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2023-08-08 18:45:55.940 -07:00 [INF] Executed DbCommand (32ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2023-08-08 18:45:55.949 -07:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-08-08 18:45:55.962 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2023-08-08 18:45:55.982 -07:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2023-08-08 18:45:55.986 -07:00 [INF] User logged in.
+2023-08-08 18:45:55.989 -07:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2023-08-08 18:45:56.000 -07:00 [INF] Executed DbCommand (8ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2023-08-08 18:45:56.006 -07:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RedirectToActionResult.
+2023-08-08 18:45:56.016 -07:00 [INF] Executing RedirectResult, redirecting to /AdminArea.
+2023-08-08 18:45:56.018 -07:00 [INF] Executed page /Account/Login in 586.6086ms
+2023-08-08 18:45:56.019 -07:00 [INF] Executed endpoint '/Account/Login'
+2023-08-08 18:45:56.032 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:57678/Identity/Account/Login application/x-www-form-urlencoded 312 - 302 - - 614.2583ms
+2023-08-08 18:45:56.035 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AdminArea - -
+2023-08-08 18:45:56.037 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.HomeController.Index (InteractiveGallery.Web)'
+2023-08-08 18:45:56.039 -07:00 [INF] Route matched with {area = "AdminArea", action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller InteractiveGallery.Web.Areas.AdminArea.Controllers.HomeController (InteractiveGallery.Web).
+2023-08-08 18:45:56.088 -07:00 [INF] Executing action method InteractiveGallery.Web.Areas.AdminArea.Controllers.HomeController.Index (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:45:56.089 -07:00 [INF] Executed action method InteractiveGallery.Web.Areas.AdminArea.Controllers.HomeController.Index (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.742ms.
+2023-08-08 18:45:56.090 -07:00 [INF] Executing ViewResult, running view Index.
+2023-08-08 18:45:56.268 -07:00 [INF] Executed ViewResult - view Index executed in 179.2665ms.
+2023-08-08 18:45:56.268 -07:00 [INF] Executed action InteractiveGallery.Web.Areas.AdminArea.Controllers.HomeController.Index (InteractiveGallery.Web) in 229.4168ms
+2023-08-08 18:45:56.269 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.HomeController.Index (InteractiveGallery.Web)'
+2023-08-08 18:45:56.273 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AdminArea - - - 200 - text/html;+charset=utf-8 238.4198ms
+2023-08-08 18:45:56.449 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:45:56.458 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 8.7469ms
+2023-08-08 18:45:56.460 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:45:56.521 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 61.8083ms
+2023-08-08 18:46:07.938 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AdminArea/Galleries/detailsGallery - -
+2023-08-08 18:46:07.959 -07:00 [INF] Executing endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:46:07.961 -07:00 [INF] Route matched with {area = "AdminArea", action = "DetailsGallery", controller = "Galleries", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DetailsGallery() on controller InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController (InteractiveGallery.Web).
+2023-08-08 18:46:08.013 -07:00 [INF] Executing action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) - Validation state: "Valid"
+2023-08-08 18:46:08.016 -07:00 [INF] Executed action method InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 2.9864ms.
+2023-08-08 18:46:08.018 -07:00 [INF] Executing ViewResult, running view DetailsGallery.
+2023-08-08 18:46:08.049 -07:00 [INF] Executed ViewResult - view DetailsGallery executed in 32.6432ms.
+2023-08-08 18:46:08.049 -07:00 [INF] Executed action InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web) in 88.0146ms
+2023-08-08 18:46:08.049 -07:00 [INF] Executed endpoint 'InteractiveGallery.Web.Areas.AdminArea.Controllers.GalleriesController.DetailsGallery (InteractiveGallery.Web)'
+2023-08-08 18:46:08.061 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AdminArea/Galleries/detailsGallery - - - 200 - text/html;+charset=utf-8 122.7825ms
+2023-08-08 18:46:08.084 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/main.js - -
+2023-08-08 18:46:08.086 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 18:46:08.088 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12376 application/javascript;+charset=utf-8 3.8743ms
+2023-08-08 18:46:08.091 -07:00 [INF] The file /main.js was not modified
+2023-08-08 18:46:08.093 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/main.js - - - 304 - text/javascript 8.9042ms
+2023-08-08 18:46:08.119 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-08-08 18:46:08.174 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 54.9094ms
+2023-08-08 18:46:08.199 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/model/REVOLVER.glb - -
+2023-08-08 18:46:10.921 -07:00 [INF] Sending file. Request path: '/model/REVOLVER.glb'. Physical path: 'D:\ProjectAfterFormat\InteractiveGallery\src\InteractiveGallery.Web\wwwroot\model\REVOLVER.glb'
+2023-08-08 18:46:10.936 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/model/REVOLVER.glb - - - 200 49848176 - 2736.9616ms
