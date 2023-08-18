@@ -1,38 +1,58 @@
 ﻿@page
 @model LoginModel
 
-@{
-    ViewData["Title"] = "Log in";
-}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <h2>Use a local account to log in.</h2>
-                <hr />
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/LogInRegister/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/LogInRegister/css/style.css">
+</head>
+<body>
+    <div class="main">
+    <div class="col-md-12">
+            <section class="sign-in">
+                <div class="container">
+                    <div class="signin-content">
+                        <div class="signin-image">
+                            <figure><img src="~/LogInRegister/images/signin-image.jpg" alt="sing up image"></figure>
+                            <a href="http://localhost:57678/Account/Register" class="signup-image-link">Create an account</a>
+                        </div>
+
+
+                        <div class="signin-form">
+                            <h2 class="form-title">Sign In</h2>
+@*                                                        <form id="account" method="post">
+*@
+                            <form id="account" method="post" class="register-form" id="login-form">
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                    <label asp-for="Input.Email" class="form-label">Email</label>
+                <div class="form-group">
+                    <label asp-for="Input.Email" class="form-label"><i class="zmdi zmdi-email"></i></label>
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" id="email" placeholder="Your Email" />
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
-                    <label asp-for="Input.Password" class="form-label">Password</label>
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                <div class="form-group">
+                <label asp-for="Input.Password" class="form-label"><i class="zmdi zmdi-lock"></i></label>
+                                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" id="your_pass" placeholder="Password" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
                 <div class="checkbox mb-3">
-                    <label asp-for="Input.RememberMe" class="form-label">
-                        <input class="form-check-input" asp-for="Input.RememberMe" />
+                    <label asp-for="Input.RememberMe" class="label-agree-term">
+                    <input id="remember-me" class="agree-term" asp-for="Input.RememberMe" />
                         @Html.DisplayNameFor(m => m.Input.RememberMe)
                     </label>
                 </div>
-                <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                <div class="form-group form-button">
+@*                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                                    *@                  
+                      <button id="signin" class="form-submit" type="submit">Log in</button>
+
                 </div>
-                <div>
+                @*<div>
                     <p>
                         <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
                     </p>
@@ -43,10 +63,11 @@
                         <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
                     </p>
                 </div>
-            </form>
+*@            </form></div>
+</div></div>
         </section>
     </div>
-    <div class="col-md-6 col-md-offset-2">
+@*    <div class="col-md-6 col-md-offset-2">
         <section>
             <h3>Use another service to log in.</h3>
             <hr />
@@ -75,9 +96,15 @@
                 }
             }
         </section>
-    </div>
+    </div>*@
 </div>
-
-@section Scripts {
+    <!-- JS -->
+    <script src="~/LogInRegister/vendor/jquery/jquery.min.js"></script>
+    <script src="~/LogInRegister/js/main.js"></script>
     <partial name="_ValidationScriptsPartial" />
+</body>
+@*@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
 }
+*@

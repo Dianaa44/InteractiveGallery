@@ -12,6 +12,6 @@ public class ArtistByIdentityGuidSpec : Specification<Artist>, ISingleResultSpec
   public ArtistByIdentityGuidSpec(string identityGuid)
   {
     Query
-        .Where(artist => artist.IdentityGuid == identityGuid);
+        .Where(artist => artist.IdentityGuid == identityGuid).Include(artist=>artist.Artworks).Include(artist=>artist.Galleries);
   }
 }

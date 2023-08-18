@@ -70,7 +70,7 @@ public class Artist : EntityBase , IAggregateRoot
     Artworks.Add(artwork);
   }
 
-  public Artwork getArtworkbyId(int artworkId)
+  public Artwork getArtworkById(int artworkId)
   {
     return Artworks.FirstOrDefault(a => a.Id == artworkId);
   }
@@ -83,7 +83,7 @@ public class Artist : EntityBase , IAggregateRoot
 
   public void updateArtwork(Artwork artwork)
   {
-   this.getArtworkbyId(artwork.Id).update(artwork);
+   this.getArtworkById(artwork.Id).update(artwork);
   }
   public void deleteArtwork(Artwork artwork)
   {

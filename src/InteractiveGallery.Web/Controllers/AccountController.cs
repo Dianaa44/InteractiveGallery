@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace InteractiveGallery.Web.Controllers;
-[Route("[controller]")]
+//[Route("[controller]")]
 public class AccountController : Controller
 {
   private readonly IRepository<Artist> _artistRepository;
@@ -32,14 +32,16 @@ public class AccountController : Controller
     return View();
   }
 
-  [HttpGet("register")]
+  //[HttpGet("register")]
+  [HttpGet]
   public IActionResult Register()
   {
     var viewModel = new RegistrationViewModel();
     return View(viewModel);
   }
 
-  [HttpPost("register")]
+  //[HttpPost("register")]
+  [HttpPost]
   public async Task<IActionResult> Register(RegistrationViewModel viewModel)
   {
     if (ModelState.IsValid)

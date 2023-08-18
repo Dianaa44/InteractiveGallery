@@ -9,16 +9,15 @@ document.body.appendChild(renderer.domElement);
 const loader = new GLTFLoader();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const controls = new OrbitControls(camera, renderer.domElement);
-//controls.listenToKeyEvents(window);
+controls.enableKeys = false;
 controls.enableDamping = true; 
 controls.dampingFactor = 0.1;
-controls.screenSpacePanning = false;
-
-controls.minDistance = 1;
-controls.maxDistance = 10;
-//controls.target.set(0, 1.5, 0);
-controls.maxPolarAngle = Math.PI / 2;
-
+//controls.screenSpacePanning = false;
+//controls.minDistance = 0.2;
+//controls.maxDistance = 10;
+//controls.target.set(0, 2, 0);
+//const tt = new THREE.Vector3(0,2,0);
+//controls.maxPolarAngle = Math.PI / 2;
 //===================================================== scene
 var scene = new THREE.Scene();
 const raycaster = new THREE.Raycaster();
@@ -26,8 +25,8 @@ const raycaster = new THREE.Raycaster();
 //camera.position.z = 5;
 //camera.position.y = 1.5;
 // Set initial camera position
-camera.position.set(0, 1.5, 3);
-camera.lookAt(0, 1.5, 0);
+camera.position.set(0, 1, -7.5);
+//camera.lookAt(0, 1,7.5 );
 //===================================================== lights
 //var light = new THREE.DirectionalLight(0xefefff, 3);
 //light.position.set(1, 1, 1).normalize();
@@ -46,87 +45,86 @@ camera.lookAt(0, 1.5, 0);
 //    camera.updateProjectionMatrix();
 //});
 
-//var moveSpeed = 0.1;
-//var rotateSpeed = 0.02;
-
-//window.addEventListener('keydown', function (event) {
-//    switch (event.key) {
-//        case 'ArrowUp':
-//            camera.translateZ(-moveSpeed);
-//            break;
-//        case 'ArrowDown':
-//            camera.translateZ(moveSpeed);
-//            break;
-//        case 'ArrowLeft':
-//            camera.rotation.y += rotateSpeed;
-//            break;
-//        case 'ArrowRight':
-//            camera.rotation.y -= rotateSpeed;
-//            break;
-//    }
-//});
-
-
-
-var speed = 0.1;
+var moveSpeed = 0.05;
 var rotateSpeed = 0.02;
-var moveForward = false;
-var moveBackward = false;
-var rotateLeft = false;
-var rotateRight = false;
-
-
 
 document.addEventListener('keydown', function (event) {
     switch (event.key) {
         case 'ArrowUp':
-            moveForward = true;
+            camera.translateZ(-moveSpeed);
             break;
         case 'ArrowDown':
-            moveBackward = true;
-            break;
-        case 'ArrowLeft': 
-            rotateLeft = true;
-            break;
-        case 'ArrowRight':
-            rotateRight = true;
-            break;
-    }
-}, false);
-
-document.addEventListener('keyup', function (event) {
-    switch (event.key) {
-        case 'ArrowUp':
-            moveForward = false;
-            break;
-        case 'ArrowDown':
-            moveBackward = false;
+            camera.translateZ(moveSpeed);
             break;
         case 'ArrowLeft':
-            rotateLeft = false;
+            camera.rotation.y += rotateSpeed;
             break;
         case 'ArrowRight':
-            rotateRight = false;
+            camera.rotation.y -= rotateSpeed;
             break;
     }
-}, false);
+});
 
 
 
-
-
-function update() {
-   // debugger;
-    var intersects = raycaster.intersectObjects(scene.children, true);
-    if (intersects.length == 0) {
-        if (moveForward) camera.translateZ(-speed);
-        if (moveBackward) camera.translateZ(speed);
-        if (rotateLeft) camera.rotation.y += rotateSpeed;
-        if (rotateRight) camera.rotation.y -= rotateSpeed;
-    }
-    
+//const imageGeometry = new THREE.PlaneGeometry(1,1);
+////// Load image texture
+//const textureLoader = new THREE.TextureLoader();
+//const imageTexture = textureLoader.load(`${image1}`);
+//const imageMaterial = new THREE.MeshBasicMaterial({ map: imageTexture });
+//const imagePlane = new THREE.Mesh(imageGeometry, imageMaterial);
+//imagePlane.position.set(-2,2,-7.4);
+//scene.add(imagePlane);
+var imagesNum = 0;
+function addImage(image) {
+    const imageGeometry = new THREE.PlaneGeometry(1, 1);
+    //// Load image texture
+    const textureLoader = new THREE.TextureLoader();
+    const imageTexture = textureLoader.load(image);
+    const imageMaterial = new THREE.MeshBasicMaterial({ map: imageTexture });
+    const imagePlane = new THREE.Mesh(imageGeometry, imageMaterial);
+    imagesNum += 1;
+    var p = new THREE.Vector3();
+    p=findImagePosition();
+    console.log(p);
+    imagePlane.position.set(p.x,p.y,p.z);
+    console.log(imagePlane.position);
+    if (imagesNum<=12 && imagesNum % 3 == 1) imagePlane.rotateY(Math.PI);
+    else if ((imagesNum <= 12 && imagesNum % 3 == 2) || (imagesNum > 12 && imagesNum % 2 == 1)) imagePlane.rotateY(-Math.PI / 2);
+    else imagePlane.rotateY(Math.PI / 2);
+    console.log(imagePlane.position)
+    scene.add(imagePlane);
 }
 
+for (var i = 0; i<16; i++) {
+    addImage(`${image1}`)
+}
+function findImagePosition() {
+    if (imagesNum <= 12) {
+        if (imagesNum % 3 == 1) {
+            var ix = (Math.floor(imagesNum / 3) + 1) * 2-5;
+            return new THREE.Vector3(ix,2,7.45);
+        }
+        else if (imagesNum % 3 == 2) {
+            var iz = (Math.floor(imagesNum / 3) + 1) * 2 - 7;
+            return new THREE.Vector3(4.95, 2, iz);
+        }
+        else {
+            var iz = (Math.floor(imagesNum / 3) + 1) * 2 - 10;
+            return new THREE.Vector3(-4.95, 2, iz);
+        }
+    }
+    else if (imagesNum <= 16) {
+        if (imagesNum % 2 == 1) {
+            var iz = (Math.floor((imagesNum-12) / 2) + 5) * 2 - 7;
+            return new THREE.Vector3(4.95, 2, iz);
+        }
+        else {
+            var iz = (Math.floor((imagesNum - 12) / 2) + 5) * 2 - 10;
+            return new THREE.Vector3(-4.95, 2, iz);
+        }
+    }
+}
 
 //===================================================== model
 //var loader = new THREE.GLTFLoader();
@@ -146,7 +144,7 @@ loader.load(
 
         model = gltf.scene;
       //  model.scale.set(.35, .35, .35);
-        model.position.set(0, 1.5, 0)
+        model.position.set(0, 1, 0)
         scene.add(model);
         
         mixer = new THREE.AnimationMixer(model);
@@ -194,7 +192,6 @@ render();
 function animate() {
     requestAnimationFrame(animate);
     controls.update();
-    update();
     renderer.render(scene, camera);
 }
 animate();

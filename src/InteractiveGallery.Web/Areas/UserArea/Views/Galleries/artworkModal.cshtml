@@ -1,0 +1,46 @@
+﻿@model InteractiveGallery.Core.ArtistAggregate.Artist
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!-- Modal -->
+@*<div class="modal fade" id="artworksModal" tabindex="-1" role="dialog" aria-labelledby="artworksModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Select Artworks</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <p>dddrr</p>
+            <div class="modal-body">
+                <p>dddd</p>
+            @foreach(var artwork in Model.Artworks){
+                  <div class="form-group">
+                    <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="@artwork.Id">
+                        <label class="form-check-label">@artwork.Name</label>
+                    </div>
+                </div>
+            }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="submitArtworks">Add Selected Artworks</button>
+            </div>
+        </div>
+    </div>
+</div>
+*@
+<div class="modal-body">
+    <p>dddd</p>
+    @foreach (var artwork in Model.Artworks)
+    {
+        <div class="form-group">
+            <div class="form-check">
+                <input  class="form-check-input artwork-checkbox" type="checkbox" value="@artwork.Id">
+                <label class="form-check-label">@artwork.Name</label>
+            </div>
+        </div>
+    }
+</div>
+

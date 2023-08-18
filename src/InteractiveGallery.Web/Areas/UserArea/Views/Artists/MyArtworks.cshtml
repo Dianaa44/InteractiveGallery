@@ -1,0 +1,47 @@
+﻿@model InteractiveGallery.Core.ArtistAggregate.Artist
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Artworks";
+    Layout = "~/Areas/UserArea/Views/Shared/MyLayout.cshtml";
+}
+
+<h1> My Artworks</h1>
+<br>
+<div class="row">
+        @foreach (var item in Model.Artworks)
+        {
+            <div class="col-md-6 col-lg-3">
+                <div class="card">
+                    @*imaaaage sides aren;t rounded*@
+                <img src="~/ArtworkImages/@item.Image" asp-append-version="true" class="img-fluid" style="height:300px;">
+
+                    <div class="card-body">
+                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h4>
+                        <ul class="card-profile__info">
+                            <li class="mb-1"> <strong class="text-dark mr-4">Description</strong><span>@Html.DisplayFor(modelItem => item.Description)</span></li>
+                            <li><strong class="text-dark mr-4">Price</strong><span>@Html.DisplayFor(modelItem => item.Price)</span></li>
+                        </ul>
+                    <a href="@Url.Action("EditArtwork","Artists",new { area = "UserArea" ,artworkId=item.Id})" type="button" class="btn mb-1 btn-flat btn-outline-primary">Edit</a>
+                    <a href="@Url.Action("DeleteArtwork","Artists",new { area = "UserArea" ,artworkId=item.Id})" type="button" class="btn mb-1 btn-flat btn-outline-primary">Delete</a>
+
+@*                        <a asp-action="Details" asp-route-id="@item.Id" class="card-text">Details</a>
+*@
+                    </div>
+                </div>
+            </div>
+}   
+
+    <div class="col-md-6 col-lg-3">
+        <a href="@Url.Action("CreateArtwork","Artists",new { area = "UserArea" , artistId=@Model.Id })" aria-expanded="false">
+            <div class="card">
+                <img src="~/Images/plus.png" class="img-fluid" style="height:300px;">
+            <div class="card-body">
+                    <br /><br />
+                <h4 class="card-title">Create new artwork</h4>
+                    <br /><br />
+            </div>
+            </div>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+﻿@model InteractiveGallery.Core.ArtistAggregate.ArtworkValueObject
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/UserArea/Views/Shared/MyLayout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Artwork</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Editartwork">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.categories"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            @*<div class="form-group" >
+                <label asp-for="ArtistId" class="control-label"></label>
+                <select asp-for="ArtistId" class="form-control" asp-items="ViewBag.artist"></select>
+                <span asp-validation-for="ArtistId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="GalleryId" class="control-label"></label>
+                <select asp-for="GalleryId" class="form-control" asp-items="ViewBag.galleries"></select>
+                <span asp-validation-for="GalleryId" class="text-danger"></span>
+            </div>
+          @*  <div class="form-group">
+                <img src="~/ArtworkImages/@Model.Image" asp-append-version="true" width="60" height="60" id="preview">
+
+
+                <label class="d-none" asp-for="Image" class="control-label"></label>
+                <input class="d-none" asp-for="Image" class="form-control">
+                <span class="d-none" asp-validation-for="Image" class="text-danger"></span>
+
+
+
+                <label class="control-label"></label>
+                <input asp-for="theImage" class="form-control" id="theNewImage" onchange="previewImage(event)" />
+                <span class="text-danger"></span>
+
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ArtistId" />
+            <input type="hidden" asp-for="Image" />
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+<script>
+    function previewImage(event) {
+        var input = event.target;
+        var reader = new FileReader();
+
+        reader.onload = function () {
+            var img = document.getElementById("preview");
+            img.src = reader.result;
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+</script>

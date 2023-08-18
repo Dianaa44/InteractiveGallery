@@ -1,0 +1,66 @@
+﻿@model InteractiveGallery.Core.ArtistAggregate.ArtworkValueObject
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "CreateArtwork";
+	Layout = "~/Areas/UserArea/Views/Shared/MyLayout.cshtml";
+}
+
+<h3>Create new Artwork</h3>
+<br/>
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="basic-form">
+                <form asp-action="CreateArtwork" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" type="text" class="form-control input-default" >
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" type="number" class="form-control input-default" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    @* <div class="form-group">
+                    <label asp-for="Status" class="control-label"></label>
+                    <input asp-for="Status" class="form-control" />
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                    </div>*@
+
+                    <div class="form-group">
+                        <label asp-for="CategoryId" class="control-label">Category</label>
+                        <select asp-for="CategoryId" class="form-control input-default" asp-items="ViewBag.categories"></select>
+                    </div>
+                    @*<div class="form-group">
+                    <label asp-for="ArtistId" class="control-label"></label>
+                    <select asp-for="ArtistId" class ="form-control" asp-items="ViewBag.artistId"></select>
+                    </div>*@
+                    <div class="form-group">
+                        <label asp-for="GalleryId" class="control-label">Gallery</label>
+                        <select asp-for="GalleryId" class="form-control input-default" asp-items="ViewBag.galleries"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="theImage">Image</label>
+                        <input autocomplete="off" asp-for="theImage" type="file" class="form-control-file" />
+                        <span asp-validation-for="theImage" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control input-default" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

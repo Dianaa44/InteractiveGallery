@@ -1,47 +1,44 @@
 ﻿@model InteractiveGallery.Core.GalleryAggregate.GalleryValueObject
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Areas/UserArea/Views/Shared/MyLayout.cshtml";
+	Layout = "~/Areas/UserArea/Views/Shared/MyLayout.cshtml";
 }
 
 <h1>Create</h1>
 
 
 <div class="col-lg-12">
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">Create new gallery</h4>
-            <div class="basic-form">
-                <form asp-action="Create">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group row">
-                        <label asp-for="Name" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input asp-for="Name" class="form-control" />
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                        </div>
-                    </div>
+	<div class="card">
+		<div class="card-body">
+			<h4 class="card-title">Create new gallery</h4>
+			<div class="basic-form">
+				<form asp-action="Create">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<div class="form-group row">
+						<label asp-for="Name" class="col-sm-2 col-form-label"></label>
+						<div class="col-sm-10">
+							<input asp-for="Name" class="form-control" />
+							<span asp-validation-for="Name" class="text-danger"></span>
+						</div>
+					</div>
 
-                    <div class="form-group row">
-                        <label asp-for="Theme" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input asp-for="Theme" class="form-control" />
-                            <span asp-validation-for="Theme" class="text-danger"></span>
-                        </div>
-                    </div>
+					<div class="form-group row">
+						<label asp-for="Theme" class="col-sm-2 col-form-label"></label>
+						<div class="col-sm-10">
+							<input asp-for="Theme" class="form-control" />
+							<span asp-validation-for="Theme" class="text-danger"></span>
+						</div>
+					</div>
 
-                    <div class="form-group row">
-                       <label asp-for="InitiatorId" class="col-sm-2 col-form-label"></label>
-                        <select asp-for="InitiatorId" class="form-control" asp-items="ViewBag.artists"></select>
-                    </div>
-
-                    <input type="submit" value="Create" class="btn mb-1 btn-flat btn-outline-primary" />
-                    <a asp-action="Index" class="card-text">Back to List</a>
-                </form>
-            </div>
-        </div>
-        <div>
-        </div>
-    </div>
-</div>
+					<input type="submit" value="Create" class="btn mb-1 btn-flat btn-outline-primary"/>
+					<a asp-action="Index" class="card-text">Back to List</a>
+				</form>
+			</div>
+		</div>
+		<div>
+	
+		</div>
+	</div>
+</div> 

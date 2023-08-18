@@ -1,103 +1,139 @@
 ﻿@model InteractiveGallery.Core.ArtistAggregate.ArtistValueObject
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     ViewData["Title"] = "Details";
-	Layout = "~/Views/UserViews/Shared/MyLayout.cshtml";
+    Layout = "~/Areas/UserArea/Views/Shared/MyLayout.cshtml";
 }
 
 
+<div class="row">
+    <div class="col-lg-4 col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="media align-items-center mb-4">
+                    <img class="mr-3" src="~/images/avatar/11.png" width="80" height="80" alt="">
+                    <div class="media-body">
+                        <h3 class="mb-0">@Html.DisplayFor(model => model.Name)</h3>
+                        <p class="text-muted mb-0">Canada</p>
+                    </div>
+                </div>
 
-
-	<div class="row">
-		<div class="col-lg-4 col-xl-12">
-			<div class="card">
-				<div class="card-body">
-					<div class="media align-items-center mb-4">
-						<img class="mr-3" src="~/images/avatar/11.png" width="80" height="80" alt="">
-						<div class="media-body">
-						<h3 class="mb-0">@Html.DisplayFor(model => model.Name)</h3>
-							<p class="text-muted mb-0">Canada</p>
-						</div>
-					</div>
-
-					<h4>Biography</h4>
-				<p class="text-muted">@Html.DisplayFor(model => model.Biography)</p>
-					<ul class="card-profile__info">
-						<li class="mb-1"><strong class="text-dark mr-4">Mobile</strong> <span>01793931609</span></li>
-						<li><strong class="text-dark mr-4">Email</strong> <span>name@domain.com</span></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+                <h4>Biography</h4>
+                <p class="text-muted">@Html.DisplayFor(model => model.Biography)</p>
+                <ul class="card-profile__info">
+                    <li class="mb-1"><strong class="text-dark mr-4">Mobile</strong> <span>01793931609</span></li>
+                    <li><strong class="text-dark mr-4">Email</strong> <span>name@domain.com</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
 
 
 <!-- row -->
+@*<div class="container-fluid">
+*@	<div class="row">
+    <div class="col-lg-4 col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="media align-items-center mb-4">
+                    <div class="media-body">
+                        <h3 class="mb-0">Galleries</h3>
+                    </div>
+                </div>
+                <!--Galleries-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <p id="nogalleries" style="display: none">There are no galleries</p>
+                                <div class="bootstrap-carousel">
+                                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                        <div class="carousel-inner">
+                                            @{
+                                                int i = 0;
+                                                int totalGalleries = Model.Galleries.Count(); // Total number of galleries
+                                                bool showCarouselControls = totalGalleries > 1; // Check if there are more than one galleries
 
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-lg-4 col-xl-12">
-			<div class="card">
-				<div class="card-body">
-					<div class="media align-items-center mb-4">
-						<div class="media-body">
-							<h3 class="mb-0">My Galleries</h3>
-						</div>
-					</div>
-					<!--Galleries-->
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="card">
-								<div class="card-body">
+                                                bool showPreviousArrow = false; // Initialize to hide previous arrow
+                                                bool showNextArrow = true; // Initialize to show next arrow
 
-									<div class="bootstrap-carousel">
-										<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-											<div class="carousel-inner">
-												<div class="carousel-item active">
-													<img class="d-block w-100" src="~/images/big/img5.jpg" alt="First slide">
-												</div>
-												@foreach(var gallery in Model.Galleries){
-													
-												<div class="carousel-item">
-														<div class="row">
-															<div class="col-lg-6">
-													<img class="d-block w-100" src="~/images/big/img6.jpg"  >
-													</div>
-														<div class="col-lg-6">
-															<!--Name, theme -->
-															<div class="media-body">
-																<br>
-																<h5 class="mb-0">Name: @gallery.Name</h5>
-																<br>
-																<h5 class="mb-0">Theme: @gallery.Theme</h5>
-															</div>
+                                            }
+                                            @foreach (var gallery in Model.Galleries)
+                                            {
+                                                string carouselClass = (i == 0) ? "carousel-item active" : "carousel-item";
+                                                i++;
 
-														</div>
-														</div>
+                                                if (i == 1) // First gallery
+                                                {
+                                                    showPreviousArrow = false;
+                                                }
+                                                else { showPreviousArrow = true; }
+                                                if (i == totalGalleries) // Last gallery
+                                                {
+                                                    showNextArrow = false;
+                                                }
+                                                else { showNextArrow = true; }
 
-												</div>}
-												
-											</div><a class="carousel-control-prev" href="#carouselExampleControls" data-slide="prev"><span class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span> </a><a class="carousel-control-next" href="#carouselExampleControls"
-																																																  data-slide="next"><span class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a>
-										</div>
-									</div>
-								</div>
-							</div>
+                                                <div class="@carouselClass">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <img class="d-block w-100" src="~/images/big/img6.jpg">
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <!--Name, theme -->
+                                                            <div class="media-body">
+                                                                <br>
+                                                                <h5 class="mb-0">Name: @gallery.Name</h5>
+                                                                <br>
+                                                                <h5 class="mb-0">Theme: @gallery.Theme</h5>
+@*                                                                <a asp-action="VisitGallery" asp-route="@gallery.Id">visit Gallery</a>
+*@                                                            </div>
 
-						</div>
-					
+                                                        </div>
+                                                    </div>
 
+                                                </div>
+                                            }
+                                            @if (showCarouselControls)
+                                            {
+                                                if (showPreviousArrow)
+                                                {
+                                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                }
 
+                                                if (showNextArrow)
+                                                {
+                                                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!---->
+                </div>
+                <!--Galleries End-->
+            </div>
+        </div>
+    </div>
+</div>
 
-
-
-						</div>
-					</div><!---->
-				</div>
-				<!--Galleries End-->
-			</div>
-		</div>
-	</div>
+    <script>
+    var galleries = @Html.Raw(Json.Serialize(Model.Galleries.Count));
+    if (galleries == 0) {
+        var noGalleries= document.getElementById("nogalleries");
+            noGalleries.style.display="block";
+    }
+    </script>

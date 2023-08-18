@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.Metrics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.StaticFiles;
+using Autofac.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,7 +47,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
 
-
+//builder.Services.AddMvc().AddRazorPagesOptions(options => options. = true);
 builder.Services.AddControllersWithViews().AddNewtonsoftJson();
 builder.Services.AddRazorPages();
 builder.Services.AddFastEndpoints();
@@ -132,8 +133,9 @@ app.MapAreaControllerRoute(
 
 app.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}"
+        pattern: "{controller=Account}/{action=Register}/{id?}"
     );
+
 
 
 
