@@ -28,11 +28,14 @@ const raycaster = new THREE.Raycaster();
 camera.position.set(0, 1, -7.5);
 //camera.lookAt(0, 1,7.5 );
 //===================================================== lights
-//var light = new THREE.DirectionalLight(0xefefff, 3);
+//const light = new THREE.directionallight(0xefefff, 3);
 //light.position.set(1, 1, 1).normalize();
 //scene.add(light);
-//var light = new THREE.DirectionalLight(0xffefef, 3);
-//light.position.set(-1, -1, -1).normalize();
+//const light2 = new THREE.PointLight(0xefefff, 1, 100);
+//light2.position.set(1, 1, 1);
+//scene.add(light2);
+//var light = new three.directionallight(0xffefef, 3);
+//light.position.set(1, 1, 1).normalize();
 //scene.add(light);
 
 //===================================================== resize
