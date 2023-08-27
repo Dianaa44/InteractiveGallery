@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InteractiveGallery.Infrastructure.Migrations
 {
     [DbContext(typeof(InteractiveGalleryDbContext))]
-    [Migration("20230807024513_ArtworkArtistIdNullable")]
-    partial class ArtworkArtistIdNullable
+    [Migration("20230824033837_AllTables")]
+    partial class AllTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,7 +73,7 @@ namespace InteractiveGallery.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("description");
 
-                    b.Property<int>("GalleryId")
+                    b.Property<int?>("GalleryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
@@ -403,7 +403,6 @@ namespace InteractiveGallery.Infrastructure.Migrations
                     b.HasOne("InteractiveGallery.Core.GalleryAggregate.Gallery", "Gallery")
                         .WithMany("Artworks")
                         .HasForeignKey("GalleryId")
-                        .IsRequired()
                         .HasConstraintName("FK_Artwork_Gallery");
 
                     b.Navigation("Artist");

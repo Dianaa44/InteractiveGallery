@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using InteractiveGallery.Core.GalleryAggregate;
 using InteractiveGallery.Infrastructure.Data;
 using InteractiveGallery.Core.ArtistAggregate;
@@ -15,11 +11,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using InteractiveGallery.Core.CategoryAggregate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.TagHelpers;
 using InteractiveGallery.Core.CategoryAggregate.Specifications;
 
 namespace InteractiveGallery.Web.Areas.UserArea.Controllers;
@@ -50,6 +41,9 @@ public class GalleriesController : Controller
     var galleries = await _galleryRepository.ListAsync();
     return View(galleries.ToArray());
   }
+
+
+
   //Get the user's gallery
   [HttpGet("myGalleries")]
   public async Task<IActionResult> MyGalleries()
@@ -62,25 +56,32 @@ public class GalleriesController : Controller
     var galleries = await _galleryRepository.ListAsync(spec);
     return View(galleries.ToArray());
   }
-  // GET: Galleries/Details/5
+
+
+
+  //gallery details (the gallery should belong to the user)
   [HttpGet("details/{id:int}")]
   public async Task<IActionResult> Details(int id)
   {
+    string? artistIdentityGuid = _userManager.GetUserId(HttpContext.User);
+    var initiatorspec = new ArtistByIdentityGuidSpec(artistIdentityGuid);
+    var initiatorUser = await _artistRepository.FirstOrDefaultAsync(initiatorspec);
+    if (initiatorUser == null) { return NotFound(); }
+
     var spec = new GalleryByIdSpec(id);
     var gallery = await _galleryRepository.FirstOrDefaultAsync(spec);
     if (gallery == null)
     {
       return NotFound();
     }
-    var artistSpec = new ArtistByIdSpec(gallery.InitiatorId);
-    var artist = await _artistRepository.FirstOrDefaultAsync(artistSpec);
+    if (initiatorUser.Id != gallery.InitiatorId) return NotFound();
     var galleryVO = new GalleryValueObject
     {
       Id = gallery.Id,
       Name = gallery.Name,
       Theme = gallery.Theme,
       InitiatorId = gallery.InitiatorId,
-      InitiatorArtist = artist,
+      InitiatorArtist = initiatorUser,
       Artworks = gallery.Artworks
     };
     return View(galleryVO);
@@ -109,6 +110,7 @@ public class GalleriesController : Controller
     };
     return View(galleryVO);
   }
+
   // GET: Galleries/Create
   [HttpGet("create")]
   public  IActionResult Create()
@@ -117,8 +119,6 @@ public class GalleriesController : Controller
         }
 
   // POST: Galleries/Create
-  // To protect from overposting attacks, enable the specific properties you want to bind to.
-  // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
   [HttpPost("create")]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> Create(GalleryValueObject galleryValueObject)
@@ -132,17 +132,15 @@ public class GalleriesController : Controller
     var gallery = new Gallery(galleryValueObject);
     if (ModelState.IsValid)
     {
-      //initiatorUser.addGallery(gallery);
-      //await _artistRepository.UpdateAsync(initiatorUser);
-     // await _artistRepository.SaveChangesAsync();
       await _galleryRepository.AddAsync(gallery);
       await _galleryRepository.SaveChangesAsync();
-      return RedirectToAction(nameof(Index));
+      var thisGallery = initiatorUser.Galleries.Last();
+      return RedirectToAction("details",new {  id = thisGallery.Id});
     }
             return View(gallery);
         }
 
-  // GET: Galleries/Edit/5
+  // only for the user's galleries
   [HttpGet("edit/{id:int}")]
   public async Task<IActionResult> Edit(int id)
         {
@@ -247,9 +245,17 @@ public class GalleriesController : Controller
     return RedirectToAction(nameof(Index));
   }
 
-  ///Artwork
- 
 
+
+
+
+
+
+
+
+
+  //************************************************* Artwork Actions ***************************************************
+  //they can be applied only for user's artwork
   [HttpGet("details/{galleryId:int}/addArtwork")]
   public async Task<IActionResult> AddArtwork(int galleryId)
   {
@@ -257,20 +263,34 @@ public class GalleriesController : Controller
     var initiatorspec = new ArtistByIdentityGuidSpec(artistIdentityGuid);
     var initiatorUser = await _artistRepository.FirstOrDefaultAsync(initiatorspec);
     if(initiatorUser==null) return NotFound();
-    var artworks = initiatorUser.Artworks;
-    return PartialView("artworkModal", initiatorUser);
+    var artworks =new List<Artwork>();
+    foreach(var artwork in initiatorUser.Artworks)
+    {
+      if(artwork.GalleryId==null )
+        artworks.Add(artwork);
+    }
+    return PartialView("artworkModal", artworks);
 
   }
 
   [HttpPost("details/{galleryId:int}/addArtwork")]
-  public async Task<IActionResult> AddArtwork([FromBody] List<int> selectedArtworkIds)
+  public async Task<IActionResult> AddArtwork([FromBody] List<int> selectedArtworkIds,int galleryId)
   {
     string? artistIdentityGuid = _userManager.GetUserId(HttpContext.User);
     var initiatorspec = new ArtistByIdentityGuidSpec(artistIdentityGuid);
     var initiatorUser = await _artistRepository.FirstOrDefaultAsync(initiatorspec);
-    if (initiatorUser == null) return NotFound();
+    if (initiatorUser == null) return Json(new { success = false });
+    var gallerySpec = new GalleryByIdSpec(galleryId);
+    var gallery =await  _galleryRepository.FirstOrDefaultAsync(gallerySpec);
+    if(gallery == null) return Json(new { success = false });
+    foreach(var artworkId in selectedArtworkIds)
+    {
+      var artwork = initiatorUser.getArtworkById(artworkId);
+      gallery.addArtwork(artwork);
+      await _galleryRepository.UpdateAsync(gallery);
+    }
+    await _galleryRepository.SaveChangesAsync();
     return Json(new { success = true });
-
   }
 
 
@@ -317,9 +337,7 @@ public class GalleriesController : Controller
     return View(artworkVO);
   }
 
-  // POST: Artworks/Edit/5
-  // To protect from overposting attacks, enable the specific properties you want to bind to.
-  // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+  //Edit Artwork
   [HttpPost("details/{galleryId:int}/editArtwork/{artworkId:int}")]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> EditArtwork(int galleryId, int artworkId, [Bind("Name,Price,Status,CategoryId,ArtistId,GalleryId,Image,Description,Id")] ArtworkValueObject artworkVO)
@@ -346,7 +364,7 @@ public class GalleriesController : Controller
     return View(artworkVO);
   }
 
-  //  GET: Artworks/Delete/5
+  //  remove artwork from gallery
   [HttpGet("details/{galleryId:int}/deleteArtwork/{artworkId:int}")]
   public async Task<IActionResult> DeleteArtwork(int galleryId, int artworkId)
   {
@@ -358,7 +376,7 @@ public class GalleriesController : Controller
     return View(artwork);
   }
 
-  // POST: Artworks/Delete/5
+  // remov artwork from gallery
   [HttpPost("details/{galleryId:int}/deleteArtwork/{artworkId:int}")]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> DeleteArtworkConfirmed(int galleryId, int artworkId)
@@ -368,80 +386,26 @@ public class GalleriesController : Controller
     if (gallery == null) return NotFound();
     var artwork = gallery.getArtworkById(artworkId);
     if (artwork == null) return NotFound();
-    if (artwork.ArtistId == null) return NotFound();
-    int artistid = (int)artwork.ArtistId;
     gallery.deleteArtwork(artwork);
     await _galleryRepository.UpdateAsync(gallery);
     await _galleryRepository.SaveChangesAsync();
-    return RedirectToAction(nameof(Index));
+    return RedirectToAction("details", new { id = galleryId });
   }
 
 
 
-  // GET: Artworks/Details/5
+  // artwork details
   [HttpGet("details/{galleryId:int}/details/{artworkId}")]
-  public async Task<IActionResult> ArtworkDetails(int artworkId)
+  public async Task<IActionResult> ArtworkDetails(int galleryId, int artworkId)
   {
-    //artist Id
-    int artistId = 1;
-    var spec = new ArtistByIdSpec(artistId);
-    var artist = await _artistRepository.FirstOrDefaultAsync(spec);
-    if (artist == null)
-    {
-      return NotFound();
-    }
-    var artwork = artist.getArtworkById(artworkId);
+    var spec = new GalleryByIdSpec(galleryId);
+    var gallery = await _galleryRepository.FirstOrDefaultAsync(spec);
+    if (gallery == null) return NotFound();
+    var artwork = gallery.getArtworkById(artworkId);
     var artworkVO = new ArtworkValueObject(artwork);
+    if (artwork.ArtistId == null) return NotFound();
     return View(artworkVO);
   }
-
-
-  // GET: Galleries/Create
-  [HttpPost("createMainGallery")]
-  public async Task<IActionResult> CreateMainGallery()
-  {
-    string? artistIdentityGuid = _userManager.GetUserId(HttpContext.User);
-    var initiatorspec = new ArtistByIdentityGuidSpec(artistIdentityGuid);
-    var initiatorUser = await _artistRepository.FirstOrDefaultAsync(initiatorspec);
-    if (initiatorUser == null) { return NotFound(); }
-    //to get Id
-    var galleryVO = new GalleryValueObject()
-    {
-      Name = "your main gallery",
-      Theme = "None",
-      InitiatorId = initiatorUser.Id
-    };
-    var gallery = new Gallery(galleryVO);
-    await _galleryRepository.AddAsync(gallery);
-    await _galleryRepository.SaveChangesAsync();
-    return RedirectToAction(nameof(Index));
-  }
-
-  // POST: Galleries/Create
-  // To protect from overposting attacks, enable the specific properties you want to bind to.
-  // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-  //[HttpPost("create")]
-  //[ValidateAntiForgeryToken]
-  //public async Task<IActionResult> Create(GalleryValueObject galleryValueObject)
-  //{
-
-  //  string? artistIdentityGuid = _userManager.GetUserId(HttpContext.User);
-  //  var initiatorspec = new ArtistByIdentityGuidSpec(artistIdentityGuid);
-  //  var initiatorUser = await _artistRepository.FirstOrDefaultAsync(initiatorspec);
-  //  if (initiatorUser == null) { return NotFound(); }
-  //  //galleryValueObject.InitiatorArtist = initiatorUser;
-  //  var gallery = new Gallery(galleryValueObject);
-  //  if (ModelState.IsValid)
-  //  {
-  //    initiatorUser.addGallery(gallery);
-  //    await _artistRepository.UpdateAsync(initiatorUser);
-  //    await _artistRepository.SaveChangesAsync();
-  //    await _galleryRepository.AddAsync(gallery);
-  //    await _galleryRepository.SaveChangesAsync();
-  //    return RedirectToAction(nameof(Index));
-  //  }
-  //  return View(gallery);
-  //}
 
 }
 

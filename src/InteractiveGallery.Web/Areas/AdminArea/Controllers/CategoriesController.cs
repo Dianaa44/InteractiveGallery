@@ -18,7 +18,7 @@ namespace InteractiveGallery.Web.Areas.AdminArea.Controllers;
 [Route("AdminArea/[controller]")]
 [Authorize(Roles = "Admin")]
 public class CategoriesController : Controller
-    {
+{
   private readonly IRepository<Category> _categoryRepository;
 
 
@@ -49,7 +49,7 @@ public class CategoriesController : Controller
     {
       Id = category.Id,
       Name = category.Name,
-      Description= category.Description,
+      Description = category.Description,
     };
     return View(categoryVO);
   }
@@ -57,9 +57,9 @@ public class CategoriesController : Controller
   // GET: Categories/Create
   [HttpGet("create")]
   public IActionResult Create()
-        {
-            return View();
-        }
+  {
+    return View();
+  }
 
   // POST: Categories/Create
   // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -92,7 +92,8 @@ public class CategoriesController : Controller
     {
       Id = category.Id,
       Name = category.Name,
-      Description=category.Description    };
+      Description = category.Description
+    };
     return View(categoryVO);
   }
 
@@ -138,7 +139,7 @@ public class CategoriesController : Controller
     {
       Id = category.Id,
       Name = category.Name,
-      Description=category.Description,
+      Description = category.Description,
     };
     return View(categoryVO);
   }
@@ -161,5 +162,4 @@ public class CategoriesController : Controller
     return RedirectToAction(nameof(Index));
   }
 
-    }
-
+}

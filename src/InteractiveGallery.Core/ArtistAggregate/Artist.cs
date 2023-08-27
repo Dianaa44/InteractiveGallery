@@ -22,7 +22,6 @@ public class Artist : EntityBase , IAggregateRoot
   }
 
 
-
   public Artist(string name,string biography)
   {
     //Name = Guard.Against.NullOrEmpty(name, nameof(name));
@@ -45,14 +44,7 @@ public class Artist : EntityBase , IAggregateRoot
 
 
   }
-  //public void AddGallery(Gallery gallery)
-  //{
-  //  Guard.Against.Null(gallery, nameof(gallery));
-  //  Galleries.Add(gallery);
-  //  RaiseDomainEvent(new NewGalleryAddedEvent(this, gallery));
-  //  var newGalleryAddedEvent = new NewGalleryAddedEvent(this, gallery);
-  //  base.RegisterDomainEvent(newGalleryAddedEvent);
-  //}
+
 
   public void updateName(string name)
   {
@@ -66,7 +58,6 @@ public class Artist : EntityBase , IAggregateRoot
 
   public void addArtwork(Artwork artwork)
   {
-    if (Artworks ==  null) Artworks=new List<Artwork>();
     Artworks.Add(artwork);
   }
 
@@ -75,12 +66,6 @@ public class Artist : EntityBase , IAggregateRoot
     return Artworks.FirstOrDefault(a => a.Id == artworkId);
   }
 
-  public void addGallery(Gallery gallery) {
-    if (Galleries == null) Galleries = new List<Gallery>();
-    Galleries.Add(gallery);
-
-    }
-
   public void updateArtwork(Artwork artwork)
   {
    this.getArtworkById(artwork.Id).update(artwork);
@@ -88,14 +73,7 @@ public class Artist : EntityBase , IAggregateRoot
   public void deleteArtwork(Artwork artwork)
   {
     Artworks.Remove(artwork);
-    if (Artworks.Count == 0)
-      Artworks = new List<Artwork>();
-  }
-  public void deleteArtwork2(Artwork artwork)
-  {
-    
-    Artworks.Remove(artwork);
-
+    artwork.deleteRefrences();
   }
 
 

@@ -63,7 +63,7 @@ public class AccountController : Controller
         // Sign in the user (optional)
         await _signInManager.SignInAsync(user, isPersistent: false);
 
-        return RedirectToAction("Create", "Galleries", new { area = "UserArea" }); // Redirect to a success page
+        return RedirectToAction("Index", "Home", new { area = "UserArea" }); // Redirect to a success page
       }
       else
       {

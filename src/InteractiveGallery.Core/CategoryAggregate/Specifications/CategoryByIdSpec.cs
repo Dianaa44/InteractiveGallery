@@ -1,5 +1,4 @@
-﻿
-using Ardalis.Specification;
+﻿using Ardalis.Specification;
 
 namespace InteractiveGallery.Core.CategoryAggregate.Specifications;
 public class CategoryByIdSpec : Specification<Category>, ISingleResultSpecification

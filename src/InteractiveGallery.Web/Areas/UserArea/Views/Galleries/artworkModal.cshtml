@@ -1,4 +1,5 @@
-﻿@model InteractiveGallery.Core.ArtistAggregate.Artist
+﻿@model IEnumerable<InteractiveGallery.Core.ArtistAggregate.Artwork>
+
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <!-- Modal -->
@@ -33,7 +34,7 @@
 *@
 <div class="modal-body">
     <p>dddd</p>
-    @foreach (var artwork in Model.Artworks)
+    @foreach (var artwork in Model)
     {
         <div class="form-group">
             <div class="form-check">

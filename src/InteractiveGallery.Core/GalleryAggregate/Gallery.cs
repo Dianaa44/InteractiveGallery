@@ -49,7 +49,13 @@ public class Gallery : EntityBase, IAggregateRoot
   public void deleteArtwork(Artwork artwork)
   {
     Artworks.Remove(artwork);
-
+    artwork.deleteGalleryRefrences();
 
   }
+
+  public void addArtwork(Artwork artwork)
+  {
+    Artworks.Add(artwork);
+  }
+
 }

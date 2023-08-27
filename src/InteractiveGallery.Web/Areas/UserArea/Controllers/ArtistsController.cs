@@ -39,7 +39,7 @@ public class ArtistsController : Controller
     _categoryRepository = categoryRepository;
     _webHostEnvironment = webHostEnvironment;
   }
-
+   
   [HttpGet]
   public async Task<IActionResult> Index()
   {
@@ -83,28 +83,7 @@ public class ArtistsController : Controller
     }
     return View(artist);
   }
-  // GET: Artists/Create
-  [HttpGet("create")]
-  public IActionResult Create()
-        {
-            return View();
-        }
-
-  
-  [HttpPost("create")]
-  [ValidateAntiForgeryToken]
-  public async Task<IActionResult> Create(ArtistValueObject artistValueObject)
-  {
-    var artist = new Artist(artistValueObject);
-    if (ModelState.IsValid)
-    { 
-      artist.IdentityGuid=_userManager.GetUserId(HttpContext.User);
-      await _artistRepository.AddAsync(artist);
-      await _artistRepository.SaveChangesAsync();   
-      return RedirectToAction(nameof(Index));
-    }
-    return View(artist);
-  }
+ 
 
 
   // GET: Artists/Edit/5
@@ -199,26 +178,8 @@ public class ArtistsController : Controller
         }
 
 
-  //[HttpGet("register")]
-  //public IActionResult Register()
-  //{
-  //  return View();
-  //}
-
-  //[HttpPost("register")]
-  //public IActionResult Register(RegisterationViewModel model)
-  //{
-  //  if (ModelState.IsValid)
-  //  {
-  //    // Process the artist registration data and create a new artist account
-  //    // Redirect to a success page or login page after successful registration.
-  //    return RedirectToAction(nameof(Index));
-  //  }
-
-  //  // If the model state is invalid, redisplay the artist register view with validation errors.
-  //  return View(model);
-  //}
-
+  
+  //***************************************** Artwork Actions *************************************************
   // GET: Artworks/Create
   [HttpGet("createArtwork")]
   public async Task<IActionResult> CreateArtworkAsync()
@@ -241,9 +202,7 @@ public class ArtistsController : Controller
     .ToList();
     ViewBag.galleries = selectListGalleries;
 
-    //ViewBag.joinedGalleries = artist.JoinedGalleries.ToList();
     ViewBag.artist = artist;
-    //Is category a diffrent aggregate?
     var categories = await _categoryRepository.ListAsync();
     List<SelectListItem> selectListCategories = categories
     .Select(c => new SelectListItem
@@ -261,8 +220,6 @@ public class ArtistsController : Controller
 
 
   // POST: Artworks/Create
-  // To protect from overposting attacks, enable the specific properties you want to bind to.
-  // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
   //[HttpPost]
   [HttpPost("createArtwork")]
   [ValidateAntiForgeryToken]
@@ -422,17 +379,18 @@ public class ArtistsController : Controller
     }
     var artwork = artist.getArtworkById(artworkId);
     if (artwork == null) return NotFound();
+
+    if (artwork.GalleryId != null)
+    {
+
+      var gallerySpec = new GalleryByIdSpec((int)artwork.GalleryId);
+      var gallery = await _galleryRepository.FirstOrDefaultAsync(gallerySpec);
+      if (gallery == null) { return NotFound(); }
+      gallery.deleteArtwork(artwork);
+      await _galleryRepository.UpdateAsync(gallery);
+      await _galleryRepository.SaveChangesAsync();
+    }
     artist.deleteArtwork(artwork);
-    ////chaaaange it
-    if (artwork.GalleryId == null) { return NotFound(); }
-    
-    var gallerySpec = new GalleryByIdSpec((int)artwork.GalleryId);
-    var gallery = await _galleryRepository.FirstOrDefaultAsync(gallerySpec);
-    if (gallery == null) { return NotFound(); }
-    gallery.deleteArtwork(artwork);
-    artwork.deleteRefrences();
-    await _galleryRepository.UpdateAsync(gallery);
-    await _galleryRepository.SaveChangesAsync();
     await _artistRepository.UpdateAsync(artist);
     await _artistRepository.SaveChangesAsync();
     return RedirectToAction(nameof(Index));
