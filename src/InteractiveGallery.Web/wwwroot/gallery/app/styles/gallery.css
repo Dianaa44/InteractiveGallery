@@ -1,0 +1,12 @@
+.gallery-wrapper {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: -1;
+}
+
+.gallery {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}

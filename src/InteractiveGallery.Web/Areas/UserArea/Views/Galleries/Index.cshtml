@@ -5,23 +5,30 @@
     ViewData["Title"] = "Index";
 	Layout = "~/Areas/UserArea/Views/Shared/MyLayout.cshtml";
 }
+
 <h1>Galleries</h1>
 <br>
 <div class="row">
-	@foreach (var item in Model)
+    @{
+        @foreach (var item in ViewBag.nonEmptyGalleries)
 	{
-        <div class="col-md-6 col-lg-3">
 
-			<div class="card">
-				<img class="img-fluid" src="../images/big/img1.jpg" alt="">
-				<div class="card-body">
-					<h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
-@*					<p class="card-text">Artist @Html.DisplayFor(modelItem => item.InitiatorArtist.Name)</p>
-*@					<p class="card-text">Theme: @Html.DisplayFor(modelItem => item.Theme)</p>
-                    <a asp-action="VisitGallery" asp-route-id="@item.Id">Visit Gallery</a>
+            <div class="col-md-6 col-lg-3">
+
+                <div class="card">
+                    <img class ="img-fluid" >
+                    <div class="card-body">
+					<h5 class="card-title"> @item.Name </h5>
+                    <p class="card-text">Artist: @item.InitiatorArtist.Name </p>
+					<p class="card-text">Theme: @item.Theme</p>
+                    <h5><a asp-action="VisitGallery" asp-route-id="@item.Id">Visit Gallery</a></h5>
 				</div>
 			</div>
 		
-        </div>
-	}
+                </div>
+            }
+
+      }     
+    
+    
 </div>

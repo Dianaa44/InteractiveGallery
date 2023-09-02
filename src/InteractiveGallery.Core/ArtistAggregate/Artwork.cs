@@ -96,12 +96,14 @@ public class Artwork : EntityBase
   public void deleteRefrences()
   {
     this.ArtistId = null;
+    this.Artist = null;
     this.GalleryId = null;
-   
+    this.Gallery = null;
   }
 
   public void deleteGalleryRefrences()
   {
     this.GalleryId = null;
+    this.Gallery = null; 
   }
 }

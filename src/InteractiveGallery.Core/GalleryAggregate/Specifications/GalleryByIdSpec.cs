@@ -6,7 +6,7 @@ public class GalleryByIdSpec : Specification<Gallery>, ISingleResultSpecificatio
   public GalleryByIdSpec(int galleryId)
   {
     Query
-        .Where(gallery => gallery.Id == galleryId).Include(gallery => gallery.Artworks) ;
+        .Where(gallery => gallery.Id == galleryId).Include(gallery => gallery.Artworks).Include(gallery=>gallery.InitiatorArtist) ;
   }
 }
 

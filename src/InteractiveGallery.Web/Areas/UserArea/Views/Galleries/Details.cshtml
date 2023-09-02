@@ -8,55 +8,19 @@
 
 
 
-<div class="row">
-<div class="col-md-6 col-lg-12">
-	<div class="card">
-		<div class="card-body">
-			<h4 class="card-title">@Html.DisplayFor(model => model.Name)</h4>
+<br />
+			<h4 class="card-title">@Html.DisplayFor(model => model.Name) Gallery</h4>
                 <ul class="card-profile__info">
                     <li class="mb-1"> <strong class="text-dark mr-4">Artist</strong><span>@Html.DisplayFor(model => model.InitiatorArtist.Name)</span></li>
                     <li><strong class="text-dark mr-4">Theme</strong><span>@Html.DisplayFor(model => model.Theme)</span></li>
                 </ul>
            
-		</div>
-	</div>
-</div>
-</div>
+	
 <br>
 
         <h4>   Artworks</h4>
-
     <br>
-    <br>
- <div class="row"> 
-            @foreach (var item in Model.Artworks)
-            {
-                <div class="col-md-6 col-lg-3">
-                    <div class="card">
-                        @*imaaaage sides aren;t rounded*@
-                    <img src="~/ArtworkImages/@item.Image" asp-append-version="true" class="img-fluid">
-
-                        <div class="card-body">
-                                <h4 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h4>
-
-                                <ul class="card-profile__info">
-                                    <li class="mb-1"> <strong class="text-dark mr-4">Description</strong><span>@Html.DisplayFor(modelItem => item.Description)</span></li>
-                                    <li><strong class="text-dark mr-4">Price</strong><span>@Html.DisplayFor(modelItem => item.Price)</span></li>
-                                </ul>
-                    <a href="@Url.Action("EditArtwork","Galleries",new { area = "UserArea" ,artworkId=item.Id})" type="button" class="btn mb-1 btn-flat btn-outline-primary">Edit</a>
-                    <a href="@Url.Action("DeleteArtwork","Galleries",new { area = "UserArea" ,artworkId=item.Id})" type="button" class="btn mb-1 btn-flat btn-outline-primary">Delete</a>
-
-                </div>             
-                    </div>
-                </div>
-
-            }
-
-
-
-
-
-    <div class="bootstrap-modal">
+<div class="bootstrap-modal">
 
     <button id="addArtworkButton" data-toggle="modal" data-target="#artworkModal" onclick="showModal(@Model.Id)">Add Artwork</button>
 
@@ -74,12 +38,38 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="submitArtworks" onclick="submitArtworks(@Model.Id)">Add Selected Artworks</button>
+                    <button type="button" class="btn btn-primary" id="submitArtworks" onclick="submitArtworks(@Model.Id)">Add Selected Artworks</button>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+</div>
+
+        
+<br><br />
+ <div class="row"> 
+            @foreach (var item in Model.Artworks)
+            {
+                <div class="col-md-6 col-lg-3">
+                    <div class="card">
+                        @*imaaaage sides aren;t rounded*@
+                    <img src="~/ArtworkImages/@item.Image" asp-append-version="true"style="height:300px" class="img-fluid">
+
+                        <div class="card-body">
+                                <h4 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h4>
+
+                                <ul class="card-profile__info">
+                                    <li class="mb-1"> <strong class="text-dark mr-4">Description</strong><span>@Html.DisplayFor(modelItem => item.Description)</span></li>
+                                    <li><strong class="text-dark mr-4">Price</strong><span>@Html.DisplayFor(modelItem => item.Price)</span></li>
+                                </ul>
+                    <a href="@Url.Action("EditArtwork","Galleries",new { area = "UserArea" ,artworkId=item.Id,galleryId=Model.Id})" type="button" class="btn mb-1 btn-flat btn-outline-primary">Edit</a>
+                    <a href="@Url.Action("DeleteArtwork","Galleries",new { area = "UserArea" ,artworkId=item.Id,galleryId=Model.Id})" type="button" class="btn mb-1 btn-flat btn-outline-danger">Delete</a>
+
+                </div>             
+                    </div>
+                </div>
+
+            }
 					
         </div>
 
@@ -101,6 +91,8 @@
 
             });
         }
+
+
     
 </script>
 

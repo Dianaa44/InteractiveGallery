@@ -58,7 +58,8 @@ public class ArtistsController : Controller
       return NotFound();
     }
 
-    
+    var user = _userManager.GetUserAsync(HttpContext.User).Result;
+    if (user != null) ViewBag.user = user;
 
     var artistVO = new ArtistValueObject
     {

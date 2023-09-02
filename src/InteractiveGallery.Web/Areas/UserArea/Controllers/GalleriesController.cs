@@ -39,6 +39,20 @@ public class GalleriesController : Controller
   public async Task<IActionResult> Index()
         {
     var galleries = await _galleryRepository.ListAsync();
+    var nonEmptyGalleries = new List<Gallery>();
+foreach(var gallery in galleries)
+    {
+      var spec = new GalleryByIdSpec(gallery.Id);
+      var nonEmptyGallery =await _galleryRepository.FirstOrDefaultAsync(spec);
+      if (nonEmptyGallery != null)
+      {
+        if (nonEmptyGallery.Artworks.Count!=0)
+        {
+          nonEmptyGalleries.Add(nonEmptyGallery);
+        }
+      }
+    }
+    ViewBag.nonEmptyGalleries = nonEmptyGalleries;
     return View(galleries.ToArray());
   }
 
